@@ -131,6 +131,23 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 .alt-btn{padding:7px 12px;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:8px;cursor:pointer;font-family:var(--ui);font-size:12px;transition:all .15s}
 .alt-btn:hover{border-color:var(--amber);color:var(--amber)}
 
+/* ── Request Metadata Panel ── */
+.req-meta{padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--line);flex-shrink:0}
+.req-meta-section{margin-bottom:10px}
+.req-meta-section:last-child{margin-bottom:0}
+.req-meta-title{font-size:9px;color:var(--mid);letter-spacing:2px;text-transform:uppercase;font-family:var(--ui);font-weight:600;margin-bottom:5px}
+.req-meta-row{display:flex;align-items:baseline;gap:0;padding:2px 0;border-bottom:1px solid transparent}
+.req-meta-key{color:var(--muted);width:140px;flex-shrink:0;font-family:var(--mono);font-size:10.5px}
+.req-meta-val{color:var(--text);word-break:break-all;font-family:var(--mono);font-size:10.5px}
+.req-meta-val.m-get{color:var(--blue);font-weight:600}
+.req-meta-val.m-post{color:#007a50;font-weight:600}
+.req-meta-val.m-put{color:var(--amber);font-weight:600}
+.req-meta-val.m-delete{color:var(--red);font-weight:600}
+.req-meta-val.m-patch{color:#8b44d1;font-weight:600}
+.req-meta-val.url-val{color:var(--soft)}
+.req-meta-val.dim{color:var(--dim);font-style:italic}
+.req-meta-divider{height:1px;background:var(--line);margin:8px 0}
+
 /* ── Query/Body Display ── */
 .body-wrap{flex:1;overflow:auto;padding:16px;background:var(--bg)}
 .body-wrap::-webkit-scrollbar{width:5px}.body-wrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
@@ -1567,6 +1584,7 @@ function renderContent(){
             '<button class="copy-btn" id="copy-body-btn" onclick="copyBody()">Copy Body</button>'+
           '</div>'+
         '</div>'+
+        '<div class="req-meta" id="req-meta"></div>'+
         '<div class="body-wrap" id="body-wrap"></div>'+
         '<div class="curl-section">'+
           '<div class="curl-row">'+
@@ -1618,24 +1636,60 @@ function renderField(f){
   return'<div class="field"><label>'+f.label+' '+req+'</label>'+input+hint+'</div>';
 }
 
+// ─── REQUEST METADATA ─────────────────────────────────────────────────────────
+function buildReqMeta(method,url,headers,bodyType,bodyLang){
+  const mc='m-'+method.toLowerCase();
+  let html=
+    '<div class="req-meta-section">'+
+      '<div class="req-meta-title">Request</div>'+
+      `<div class="req-meta-row"><span class="req-meta-key">Method</span><span class="req-meta-val ${mc}">${method}</span></div>`+
+      `<div class="req-meta-row"><span class="req-meta-key">URL</span><span class="req-meta-val url-val">${esc(url)}</span></div>`+
+    '</div>';
+  if(headers.length){
+    html+='<div class="req-meta-divider"></div><div class="req-meta-section"><div class="req-meta-title">Headers</div>';
+    headers.forEach(([k,v])=>{
+      html+=`<div class="req-meta-row"><span class="req-meta-key">${esc(k)}</span><span class="req-meta-val">${esc(v)}</span></div>`;
+    });
+    html+='</div>';
+  }
+  html+='<div class="req-meta-divider"></div><div class="req-meta-section"><div class="req-meta-title">Body</div>';
+  if(bodyType){
+    html+=
+      `<div class="req-meta-row"><span class="req-meta-key">Type</span><span class="req-meta-val">raw</span></div>`+
+      `<div class="req-meta-row"><span class="req-meta-key">Language</span><span class="req-meta-val">${esc(bodyLang)}</span></div>`;
+  } else {
+    html+=`<div class="req-meta-row"><span class="req-meta-val dim">No body</span></div>`;
+  }
+  html+='</div>';
+  return html;
+}
+
 // ─── OUTPUT ───────────────────────────────────────────────────────────────────
 function updateOutput(){
   if(!current)return;
   const result=current.build(vals);
   const wrap=document.getElementById('body-wrap');
   const curlEl=document.getElementById('curl-display');
+  const metaEl=document.getElementById('req-meta');
   if(!wrap||!curlEl)return;
+
+  const pod=getPod();
+  const token=getToken();
 
   if(current.apiType==='xml'){
     const xml=result;
+    if(metaEl) metaEl.innerHTML=buildReqMeta('POST',`${pod}/XMLAPI`,[
+      ['Authorization',`Bearer ${token}`],
+      ['Content-Type','text/xml;charset=utf-8'],
+    ],'raw','XML');
     wrap.innerHTML='<div class="code-display">'+highlightXml(xml)+'</div>';
     curlEl.textContent=buildCurlXml(xml);
   } else {
     const {url,method,body}=result;
-    const pod=getPod();
     const endpointLine=`${method} ${pod}${url}`;
-    let display=endpointLine;
-    if(body) display+='\n\n'+body;
+    const headers=[['Authorization',`Bearer ${token}`]];
+    if(body) headers.push(['Content-Type','application/json']);
+    if(metaEl) metaEl.innerHTML=buildReqMeta(method,`${pod}${url}`,headers,body?'raw':null,body?'JSON':null);
     wrap.innerHTML='<div class="code-display">'+highlightRest(endpointLine,body)+'</div>';
     curlEl.textContent=buildCurlRest(method,url,body);
   }
