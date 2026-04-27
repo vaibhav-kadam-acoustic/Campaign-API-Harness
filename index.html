@@ -57,8 +57,11 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .token-pill.active{background:var(--greenlight);color:#007a50;border-color:rgba(0,184,124,.3)}
 .token-pill.error{background:var(--redlight);color:var(--red);border-color:rgba(214,48,48,.25)}
 .token-pill.loading{background:var(--amberlight);color:var(--amber2);border-color:rgba(224,112,0,.25)}
-.oauth-curl-wrap{display:none;align-items:center;gap:8px;padding:5px 20px 7px;background:rgba(224,112,0,.05);border-top:1px solid rgba(224,112,0,.15)}
+.oauth-curl-wrap{display:none;flex-direction:column;gap:6px;padding:8px 20px 10px;background:rgba(224,112,0,.05);border-top:1px solid rgba(224,112,0,.15)}
 .oauth-curl-wrap.visible{display:flex}
+.oauth-fallback-hdr{font-size:10px;color:var(--amber2);font-family:var(--ui);font-weight:600}
+.oauth-platform-row{display:flex;align-items:center;gap:8px}
+.oauth-platform-label{font-size:10px;color:var(--muted);font-family:var(--ui);font-weight:600;width:160px;flex-shrink:0;letter-spacing:.3px}
 .oauth-curl-code{font-family:var(--mono);font-size:10.5px;color:var(--soft);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .oauth-curl-copy{padding:4px 10px;background:transparent;border:1.5px solid rgba(224,112,0,.3);color:var(--amber2);border-radius:6px;cursor:pointer;font-family:var(--ui);font-size:10px;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all .15s}
 .oauth-curl-copy:hover{background:var(--amberlight)}
@@ -229,16 +232,24 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
     </select>
     <div class="ep-pill"><span class="ep-dot"></span><span id="ep-txt">https://api-campaign-us-1.goacoustic.com</span></div>
   </div>
-  <!-- Row 3: OAuth curl fallback (shown on CORS/network error) -->
+  <!-- Row 3: OAuth command fallback (shown on CORS/network error) -->
   <div class="oauth-curl-wrap" id="oauth-curl-wrap">
-    <span style="font-size:10px;color:var(--amber2);font-family:var(--ui);font-weight:600;white-space:nowrap;flex-shrink:0">⚠ Run this curl to get your token, then paste it below ↓</span>
-    <code class="oauth-curl-code" id="oauth-curl-code"></code>
-    <button class="oauth-curl-copy" onclick="copyOAuthCurl()">Copy curl</button>
+    <div class="oauth-fallback-hdr">⚠ CORS blocked — run one of these to get your access_token, then paste it below ↓</div>
+    <div class="oauth-platform-row">
+      <span class="oauth-platform-label">Mac / Linux</span>
+      <code class="oauth-curl-code" id="oauth-curl-code"></code>
+      <button class="oauth-curl-copy" onclick="copyOAuthCmd('curl')">Copy</button>
+    </div>
+    <div class="oauth-platform-row">
+      <span class="oauth-platform-label">Windows (PowerShell)</span>
+      <code class="oauth-curl-code" id="oauth-ps-code"></code>
+      <button class="oauth-curl-copy" onclick="copyOAuthCmd('ps')">Copy</button>
+    </div>
   </div>
   <!-- Row 4: Manual token paste (shown on CORS/network error) -->
   <div class="apibar-row" id="manual-token-row" style="display:none">
     <label>Paste Access Token</label>
-    <input type="password" id="manual-token" placeholder="Paste access_token from curl response" autocomplete="off" style="width:420px" oninput="onManualToken()"/>
+    <input type="password" id="manual-token" placeholder="Paste access_token from the command response" autocomplete="off" style="width:420px" oninput="onManualToken()"/>
   </div>
 </div>
 
@@ -351,16 +362,24 @@ function storeToken(token,expiresIn){
 function showOAuthCurlFallback(clientId,clientSecret,refreshToken){
   const pod=getPod();
   const curlCmd=`curl -s -X POST '${pod}/oauth/token' \\\n  -H 'Content-Type: application/x-www-form-urlencoded' \\\n  --data 'grant_type=refresh_token&client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}'`;
+  const psCmd=`Invoke-RestMethod -Uri '${pod}/oauth/token' \`\n  -Method POST \`\n  -ContentType 'application/x-www-form-urlencoded' \`\n  -Body 'grant_type=refresh_token&client_id=${clientId}&client_secret=${clientSecret}&refresh_token=${refreshToken}'`;
   document.getElementById('oauth-curl-code').textContent=curlCmd;
+  document.getElementById('oauth-ps-code').textContent=psCmd;
   document.getElementById('oauth-curl-wrap').classList.add('visible');
   document.getElementById('manual-token-row').style.display='flex';
 }
 
-function copyOAuthCurl(){
-  const text=document.getElementById('oauth-curl-code').textContent;
+function copyOAuthCmd(type){
+  const elId=type==='ps'?'oauth-ps-code':'oauth-curl-code';
+  const text=document.getElementById(elId).textContent;
+  const btns=document.querySelectorAll('.oauth-curl-copy');
+  const btn=btns[type==='ps'?1:0];
   navigator.clipboard.writeText(text).then(()=>{
-    const btn=document.querySelector('.oauth-curl-copy');
-    btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy curl',2000);
+    btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);
+  }).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);
   });
 }
 
@@ -1638,15 +1657,10 @@ function renderField(f){
 
 // ─── REQUEST METADATA ─────────────────────────────────────────────────────────
 function buildReqMeta(method,url,headers,bodyType,bodyLang){
-  const mc='m-'+method.toLowerCase();
-  let html=
-    '<div class="req-meta-section">'+
-      '<div class="req-meta-title">Request</div>'+
-      `<div class="req-meta-row"><span class="req-meta-key">Method</span><span class="req-meta-val ${mc}">${method}</span></div>`+
-      `<div class="req-meta-row"><span class="req-meta-key">URL</span><span class="req-meta-val url-val">${esc(url)}</span></div>`+
-    '</div>';
+  // Method + URL already shown in the endpoint pill at the top — only show Headers + Body here
+  let html='';
   if(headers.length){
-    html+='<div class="req-meta-divider"></div><div class="req-meta-section"><div class="req-meta-title">Headers</div>';
+    html+='<div class="req-meta-section"><div class="req-meta-title">Headers</div>';
     headers.forEach(([k,v])=>{
       html+=`<div class="req-meta-row"><span class="req-meta-key">${esc(k)}</span><span class="req-meta-val">${esc(v)}</span></div>`;
     });
