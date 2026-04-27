@@ -275,10 +275,23 @@ function updateTokenCountdown(){
   setTokenPill('active',h>0?`Active · ${h}h ${m}m left`:`Active · ${m}m ${s}s left`);
 }
 
+// Strip accidental "Label: value" prefixes (e.g. "User account refresh token:  abc123" → "abc123")
+function sanitizeCredential(raw){
+  const v=raw.trim();
+  // If the string contains a colon, take everything after the LAST colon+whitespace run
+  const colonIdx=v.lastIndexOf(':');
+  if(colonIdx!==-1){
+    const after=v.slice(colonIdx+1).trim();
+    // Only strip the prefix if what's after the colon looks like a credential (no spaces)
+    if(after&&!after.includes(' ')) return after;
+  }
+  return v;
+}
+
 async function fetchToken(){
-  const clientId=document.getElementById('client-id').value.trim();
-  const clientSecret=document.getElementById('client-secret').value.trim();
-  const refreshToken=document.getElementById('refresh-token').value.trim();
+  const clientId=sanitizeCredential(document.getElementById('client-id').value);
+  const clientSecret=sanitizeCredential(document.getElementById('client-secret').value);
+  const refreshToken=sanitizeCredential(document.getElementById('refresh-token').value);
   if(!clientId||!clientSecret||!refreshToken){
     setTokenPill('error','Fill Client ID, Secret & Refresh Token');return;
   }
