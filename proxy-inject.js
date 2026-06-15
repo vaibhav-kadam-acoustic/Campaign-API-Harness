@@ -1,22 +1,37 @@
 /**
  * proxy-inject.js — Acoustic Campaign API Harness: Proxy Support Layer
- * Proxy URL is hardcoded; used implicitly on Get Token and ▶ Run.
+ * Proxy URL is hardcoded; used implicitly on Get Token and Run.
  */
 (function () {
   'use strict';
 
   var PROXY_URL = 'https://worker-old-water-3b9c.vaibhav-kadam.workers.dev';
 
-  // 1. CAPTURE SELECTED OP via selectOp patch
-  function patchSelectOp() {
-    var orig = window.selectOp;
-    if (!orig) { setTimeout(patchSelectOp, 120); return; }
-    window.selectOp = function (op) {
-      window.__proxyCurrentOp = op;
-      return orig.apply(this, arguments);
-    };
+  // 1. localStorage persistence for credential fields
+  var PERSIST_IDS = ['client-id', 'client-secret', 'refresh-token', 'pod'];
+
+  function saveField(id) {
+    var el = document.getElementById(id);
+    if (el) localStorage.setItem('proxy_cred_' + id, el.value);
   }
-  patchSelectOp();
+
+  function restoreFields() {
+    PERSIST_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var saved = localStorage.getItem('proxy_cred_' + id);
+      if (saved !== null && saved !== '') el.value = saved;
+    });
+  }
+
+  function attachPersistListeners() {
+    PERSIST_IDS.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('change', function () { saveField(id); });
+      el.addEventListener('input',  function () { saveField(id); });
+    });
+  }
 
   // 2. PATCH fetchToken TO ROUTE THROUGH PROXY
   function patchFetchToken() {
@@ -35,12 +50,17 @@
         client_secret: clientSecret, refresh_token: refreshToken,
       }).toString();
       var tokenBtn = document.getElementById('fetch-token-btn');
-      if (tokenBtn) { tokenBtn.textContent = 'Fetching…'; tokenBtn.disabled = true; }
+      if (tokenBtn) { tokenBtn.textContent = 'Fetching...'; tokenBtn.disabled = true; }
       try {
         var r = await fetch(PROXY_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ endpoint: pod + '/oauth/token', method: 'POST', contentType: 'application/x-www-form-urlencoded', body: bodyStr }),
+          body: JSON.stringify({
+            endpoint: pod + '/oauth/token',
+            method: 'POST',
+            contentType: 'application/x-www-form-urlencoded',
+            body: bodyStr,
+          }),
         });
         var data = {};
         try { data = await r.json(); } catch (e) {}
@@ -51,12 +71,12 @@
             var m = document.getElementById('manual-token');
             if (m) { m.value = data.access_token; if (typeof onManualToken === 'function') onManualToken(); }
           }
-          proxyToast('✓ Token fetched', 'green');
+          proxyToast('Token fetched OK', 'green');
         } else {
-          proxyToast('⚠ Token error: ' + (data.error_description || data.error || 'HTTP ' + r.status), 'red');
+          proxyToast('Token error: ' + (data.error_description || data.error || 'HTTP ' + r.status), 'red');
         }
       } catch (err) {
-        proxyToast('⚠ ' + err.message, 'red');
+        proxyToast(err.message, 'red');
       } finally {
         if (tokenBtn) { tokenBtn.textContent = 'Get Token'; tokenBtn.disabled = false; }
       }
@@ -74,7 +94,7 @@
     if (outHdr) {
       var runBtn = document.createElement('button');
       runBtn.id = RUN_ID; runBtn.className = 'copy-btn';
-      runBtn.textContent = '▶ Run'; runBtn.title = 'Run via proxy';
+      runBtn.textContent = 'Run'; runBtn.title = 'Run via proxy';
       runBtn.style.cssText = 'background:var(--green,#00b87c);color:#0a2a1a;font-weight:700;margin-left:6px';
       runBtn.onclick = runViaProxy;
       outHdr.appendChild(runBtn);
@@ -87,7 +107,7 @@
         '<span style="font-size:9px;color:var(--muted,#5c5040);letter-spacing:2px;text-transform:uppercase;font-weight:600">Response</span>' +
         '<span id="proxy-resp-status" style="font-size:11px;font-family:monospace"></span>' +
         '<button onclick="document.getElementById(\'' + RESP_ID + '\').style.display=\'none\'" ' +
-          'style="margin-left:auto;padding:3px 8px;background:transparent;border:1px solid var(--line,#d8d2c8);border-radius:6px;cursor:pointer;font-size:10px">✕</button>' +
+          'style="margin-left:auto;padding:3px 8px;background:transparent;border:1px solid var(--line,#d8d2c8);border-radius:6px;cursor:pointer;font-size:10px">X</button>' +
       '</div>' +
       '<div id="proxy-resp-body" style="font-family:monospace;font-size:11.5px;line-height:1.7;white-space:pre-wrap;word-break:break-all;background:var(--bg,#fff);border:1.5px solid var(--line,#d8d2c8);border-radius:8px;padding:10px 14px;max-height:320px;overflow-y:auto"></div>';
     var curl = outputPane.querySelector('.curl-section');
@@ -105,47 +125,35 @@
   }
   attachObserver();
 
-  // 4. runViaProxy
+  // 4. runViaProxy — reads body and endpoint from rendered DOM directly
   async function runViaProxy() {
-    var op = window.__proxyCurrentOp;
-    if (!op) { proxyToast('⚠ Select an operation first', 'amber'); return; }
+    var epEl = document.querySelector('.op-endpoint');
+    if (!epEl) { proxyToast('Select an operation first', 'amber'); return; }
 
-    var pod   = typeof getPod   === 'function' ? getPod()   : '';
-    var token = typeof getToken === 'function' ? getToken() : (window.token || '');
+    var epText   = epEl.textContent.trim();
+    var spaceIdx = epText.indexOf(' ');
+    var method   = spaceIdx > -1 ? epText.slice(0, spaceIdx)        : 'POST';
+    var endpoint = spaceIdx > -1 ? epText.slice(spaceIdx + 1).trim() : epText;
 
-    // Gather field values from DOM inputs
-    var vals = {};
-    if (op.sections) {
-      op.sections.forEach(function (sec) {
-        (sec.f || sec.fields || []).forEach(function (field) {
-          var el = document.getElementById(field.id);
-          if (el) vals[field.id] = el.value;
-          else if (field.def !== undefined) vals[field.id] = field.def;
-        });
-      });
+    var bodyWrap = document.getElementById('body-wrap');
+    var body     = bodyWrap ? bodyWrap.textContent.trim() : '';
+
+    var contentType = endpoint.includes('XMLAPI') ? 'text/xml;charset=UTF-8' : 'application/json';
+
+    var token = '';
+    if (typeof getToken === 'function') {
+      try { token = getToken() || ''; } catch (e) {}
     }
-
-    var endpoint, method, contentType, body;
-    if (op.apiType === 'xml') {
-      var built = '';
-      try { built = op.build(vals); } catch (e) {}
-      if (typeof built !== 'string') built = '';
-      endpoint = pod + '/XMLAPI'; method = 'POST'; contentType = 'text/xml;charset=UTF-8'; body = built;
-    } else {
-      var builtR = {};
-      try { builtR = op.build(vals) || {}; } catch (e) {}
-      endpoint = pod + (builtR.url || ''); method = builtR.method || op.method || 'GET';
-      contentType = 'application/json'; body = builtR.body || null;
-    }
+    if (!token) token = val('manual-token');
 
     var runBtn   = document.getElementById(RUN_ID);
     var panel    = document.getElementById(RESP_ID);
     var statusEl = document.getElementById('proxy-resp-status');
     var bodyEl   = document.getElementById('proxy-resp-body');
 
-    if (runBtn)   { runBtn.textContent = 'Running…'; runBtn.disabled = true; }
-    if (panel)    panel.style.display = 'block';
-    if (bodyEl)   bodyEl.textContent = 'Sending…';
+    if (runBtn)   { runBtn.textContent = 'Running...'; runBtn.disabled = true; }
+    if (panel)    panel.style.display  = 'block';
+    if (bodyEl)   bodyEl.textContent   = 'Sending...';
     if (statusEl) statusEl.textContent = '';
 
     try {
@@ -153,7 +161,11 @@
       if (token && token !== 'YOUR_ACCESS_TOKEN') payload.token = token;
       if (body) payload.body = body;
 
-      var r    = await fetch(PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      var r    = await fetch(PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
       var text = await r.text();
 
       if (statusEl) {
@@ -167,12 +179,11 @@
       if (statusEl) { statusEl.textContent = 'Error'; statusEl.style.color = 'var(--red,#d63030)'; }
       if (bodyEl)   bodyEl.textContent = err.message;
     } finally {
-      if (runBtn) { runBtn.textContent = '▶ Run'; runBtn.disabled = false; }
+      if (runBtn) { runBtn.textContent = 'Run'; runBtn.disabled = false; }
     }
   }
   window.runViaProxy = runViaProxy;
 
-  // HELPERS
   function val(id) { return ((document.getElementById(id) || {}).value || '').trim(); }
 
   function proxyToast(msg, color) {
@@ -189,5 +200,16 @@
     el.style.color = color === 'green' ? '#0a2a1a' : '#fff';
     el.style.display = 'block';
     setTimeout(function () { el.style.display = 'none'; }, 2600);
+  }
+
+  function init() {
+    restoreFields();
+    attachPersistListeners();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 })();
