@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Acoustic Campaign — API Harness</title>
+<title>Acoustic Campaign â API Harness</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
 :root{
-/* ── Acoustic Campaign Brand Theme ── */
+/* ââ Acoustic Campaign Brand Theme ââ */
 --bg:#ffffff;--bg2:#f9f7f5;--bg3:#f0ede8;--bg4:#e8e3dc;
 --line:#d8d2c8;--line2:#ccc6bc;
 --dim:#b0a898;--mid:#8d8070;--muted:#5c5040;--soft:#3d3020;--text:#2a1e10;--bright:#1a0e00;
-/* Brand accent — Amber/Campaign Orange */
+/* Brand accent â Amber/Campaign Orange */
 --amber:#e07000;--amber2:#b85800;--amberglow:rgba(224,112,0,.18);--amberlight:rgba(224,112,0,.09);
 /* Greens for REST */
 --green:#00b87c;--greenglow:rgba(0,184,124,.2);--greenlight:rgba(0,184,124,.1);
@@ -29,7 +29,7 @@
 body{background:var(--bg);color:var(--text);font-family:var(--ui)}
 .wrap{display:flex;flex-direction:column;height:100vh}
 
-/* ── Header ── */
+/* ââ Header ââ */
 header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;display:flex;align-items:center;gap:12px;background:var(--header-bg);flex-shrink:0;box-shadow:0 1px 0 rgba(224,112,0,.2)}
 .hmark{width:30px;height:30px;border-radius:8px;background:var(--amber);display:flex;align-items:center;justify-content:center;font-family:var(--ui);font-size:11px;font-weight:700;color:#fff;box-shadow:0 2px 8px var(--amberglow);letter-spacing:-.5px}
 .hname{font-family:var(--ui);font-size:14px;font-weight:600;color:#ffffff;letter-spacing:-.2px}
@@ -37,7 +37,7 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .htag{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.2px;font-family:var(--ui)}
 .hmeta{margin-left:auto;font-size:10px;color:rgba(255,255,255,.35);font-family:var(--ui)}
 
-/* ── API Bar ── */
+/* ââ API Bar ââ */
 .apibar{display:flex;flex-direction:column;border-bottom:1px solid var(--line);background:var(--bg2);flex-shrink:0}
 .apibar-row{display:flex;align-items:center;gap:10px;padding:7px 20px;flex-wrap:wrap}
 .apibar-row+.apibar-row{border-top:1px solid var(--line)}
@@ -49,7 +49,7 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .apibar select:focus{border-color:var(--amber)}
 .ep-pill{font-size:10px;color:var(--amber2);padding:4px 10px;background:var(--amberlight);border:1.5px solid rgba(224,112,0,.2);border-radius:20px;display:flex;align-items:center;gap:6px;font-family:var(--ui);font-weight:500;white-space:nowrap}
 .ep-dot{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 6px var(--amberglow);flex-shrink:0}
-/* ── Token Controls ── */
+/* ââ Token Controls ââ */
 .get-token-btn{padding:6px 14px;background:var(--amber);color:#fff;border:none;border-radius:8px;cursor:pointer;font-family:var(--ui);font-size:11px;font-weight:600;white-space:nowrap;transition:background .15s,opacity .15s;flex-shrink:0}
 .get-token-btn:hover{background:var(--amber2)}
 .get-token-btn:disabled{opacity:.55;cursor:not-allowed}
@@ -66,7 +66,7 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .oauth-curl-copy{padding:4px 10px;background:transparent;border:1.5px solid rgba(224,112,0,.3);color:var(--amber2);border-radius:6px;cursor:pointer;font-family:var(--ui);font-size:10px;font-weight:600;white-space:nowrap;flex-shrink:0;transition:all .15s}
 .oauth-curl-copy:hover{background:var(--amberlight)}
 
-/* ── Body Layout ── */
+/* ââ Body Layout ââ */
 .body{display:flex;flex:1;overflow:hidden}
 .sidebar{width:252px;border-right:1px solid var(--line);overflow-y:auto;flex-shrink:0;background:var(--bg2)}
 .sidebar::-webkit-scrollbar{width:3px}.sidebar::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
@@ -79,14 +79,14 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .sb-btn.active-rest-post{background:var(--greenlight);color:#007a50;border-left-color:var(--green);font-weight:500}
 .sb-btn.active-rest-del{background:var(--redlight);color:var(--red);border-left-color:var(--red);font-weight:500}
 
-/* ── Tags ── */
+/* ââ Tags ââ */
 .tag{font-size:8px;font-weight:700;padding:2px 6px;border-radius:20px;flex-shrink:0;letter-spacing:.8px;font-family:var(--ui)}
 .tag.xml{background:var(--amberlight);color:var(--amber2);border:1px solid rgba(224,112,0,.25)}
 .tag.get{background:var(--bluelight);color:var(--blue);border:1px solid rgba(0,112,196,.25)}
 .tag.post{background:var(--greenlight);color:#007a50;border:1px solid rgba(0,184,124,.3)}
 .tag.del{background:var(--redlight);color:var(--red);border:1px solid rgba(214,48,48,.25)}
 
-/* ── Content Area ── */
+/* ââ Content Area ââ */
 .content{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:40px}
 .empty-glyph{font-size:48px;opacity:.2;color:var(--amber)}
@@ -97,7 +97,7 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .chip.xml{background:var(--amberlight);color:var(--amber2);border:1px solid rgba(224,112,0,.25)}
 .chip.rest{background:var(--greenlight);color:#007a50;border:1px solid rgba(0,184,124,.3)}
 
-/* ── Op Area ── */
+/* ââ Op Area ââ */
 .op-area{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .op-top{padding:14px 20px;border-bottom:1px solid var(--line);background:var(--bg);flex-shrink:0}
 .op-top-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
@@ -108,7 +108,7 @@ header{border-bottom:1px solid rgba(224,112,0,.25);padding:0 20px;height:52px;di
 .op-endpoint.rest-post{color:#007a50;background:var(--greenlight);border-color:rgba(0,184,124,.2)}
 .op-endpoint.rest-del{color:var(--red);background:var(--redlight);border-color:rgba(214,48,48,.2)}
 
-/* ── Split Panes ── */
+/* ââ Split Panes ââ */
 .split{flex:1;overflow:hidden;display:flex}
 .form-pane{width:316px;border-right:1px solid var(--line);overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;flex-shrink:0;background:var(--bg2)}
 .form-pane::-webkit-scrollbar{width:3px}.form-pane::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
@@ -123,7 +123,7 @@ input,select{background:var(--bg);border:1.5px solid var(--line);border-radius:8
 input:focus,select:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amberlight)}
 input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 
-/* ── Output Pane ── */
+/* ââ Output Pane ââ */
 .output-pane{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .out-hdr{padding:10px 18px;border-bottom:1px solid var(--line);background:var(--bg2);display:flex;align-items:center;gap:9px;flex-shrink:0}
 .out-label{font-size:9px;color:var(--muted);letter-spacing:2.5px;text-transform:uppercase;font-family:var(--ui);font-weight:600}
@@ -134,7 +134,7 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 .alt-btn{padding:7px 12px;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:8px;cursor:pointer;font-family:var(--ui);font-size:12px;transition:all .15s}
 .alt-btn:hover{border-color:var(--amber);color:var(--amber)}
 
-/* ── Request Metadata Panel ── */
+/* ââ Request Metadata Panel ââ */
 .req-meta{padding:10px 16px;background:var(--bg2);border-bottom:1px solid var(--line);flex-shrink:0}
 .req-meta-section{margin-bottom:10px}
 .req-meta-section:last-child{margin-bottom:0}
@@ -151,7 +151,7 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 .req-meta-val.dim{color:var(--dim);font-style:italic}
 .req-meta-divider{height:1px;background:var(--line);margin:8px 0}
 
-/* ── Query/Body Display ── */
+/* ââ Query/Body Display ââ */
 .body-wrap{flex:1;overflow:auto;padding:16px;background:var(--bg)}
 .body-wrap::-webkit-scrollbar{width:5px}.body-wrap::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
 .code-display{font-size:12.5px;line-height:1.9;white-space:pre;counter-reset:line;font-family:var(--mono)}
@@ -177,14 +177,14 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 .ep-method.mdel{color:var(--red)}
 .ep-path{color:var(--amber2)}
 
-/* ── curl Section ── */
+/* ââ curl Section ââ */
 .curl-section{border-top:1px solid var(--line);padding:12px 18px 14px;background:var(--bg2);flex-shrink:0}
 .curl-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .curl-lbl{font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-family:var(--ui);font-weight:600}
 .curl-display{font-size:11px;color:var(--soft);font-family:var(--mono);white-space:pre-wrap;word-break:break-all;background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 14px;max-height:110px;overflow-y:auto;line-height:1.6}
 .curl-display::-webkit-scrollbar{width:3px}.curl-display::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
 
-/* ── Toast ── */
+/* ââ Toast ââ */
 .toast{position:fixed;bottom:18px;right:18px;z-index:100;background:var(--bright);border:1px solid var(--amber);color:#fff;border-radius:10px;padding:10px 16px;font-size:12px;font-family:var(--ui);font-weight:500;box-shadow:0 8px 24px rgba(26,14,0,.25);display:none}
 @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
 .fadein{animation:fadeIn .18s ease}
@@ -199,7 +199,7 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
   <div class="hname">Acoustic Campaign</div>
   <div class="hsep"></div>
   <div class="htag">API Harness</div>
-  <div class="hmeta">XML API · REST API · OAuth 2.0</div>
+  <div class="hmeta">XML API Â· REST API Â· OAuth 2.0</div>
 </header>
 
 <!-- API Bar -->
@@ -234,7 +234,7 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
   </div>
   <!-- Row 3: OAuth command fallback (shown on CORS/network error) -->
   <div class="oauth-curl-wrap" id="oauth-curl-wrap">
-    <div class="oauth-fallback-hdr">⚠ CORS blocked — run one of these to get your access_token, then paste it below ↓</div>
+    <div class="oauth-fallback-hdr">â  CORS blocked â run one of these to get your access_token, then paste it below â</div>
     <div class="oauth-platform-row">
       <span class="oauth-platform-label">Mac / Linux</span>
       <code class="oauth-curl-code" id="oauth-curl-code"></code>
@@ -258,12 +258,12 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
   <div class="sidebar"><div id="sb"></div></div>
   <div class="content" id="content">
     <div class="empty">
-      <div class="empty-glyph">⟨/⟩</div>
+      <div class="empty-glyph">â¨/â©</div>
       <div class="empty-t">Select an operation</div>
       <div class="empty-s">Browse XML API and REST API operations from the sidebar. Enter your OAuth access token and select your pod to generate ready-to-run curl commands.</div>
       <div class="empty-chips">
-        <span class="chip xml">XML API — XMLAPI endpoint</span>
-        <span class="chip rest">REST API — JSON / channels</span>
+        <span class="chip xml">XML API â XMLAPI endpoint</span>
+        <span class="chip rest">REST API â JSON / channels</span>
       </div>
     </div>
   </div>
@@ -272,12 +272,12 @@ input::placeholder{color:var(--dim)}select option{background:var(--bg)}
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── Helpers ──────────────────────────────────────────────────────────────────
+// âââ Helpers ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function getPod(){return'https://'+document.getElementById('pod').value}
 function updateEp(){document.getElementById('ep-txt').textContent='https://'+document.getElementById('pod').value;if(current)updateOutput()}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
-// ─── TOKEN STATE ──────────────────────────────────────────────────────────────
+// âââ TOKEN STATE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let accessToken='';
 let tokenExpiry=null;
 let tokenTimer=null;
@@ -295,15 +295,15 @@ function updateTokenCountdown(){
   const rem=Math.max(0,Math.floor((tokenExpiry-Date.now())/1000));
   if(rem===0){
     accessToken='';clearInterval(tokenTimer);tokenTimer=null;
-    setTokenPill('error','Token expired — refresh');
+    setTokenPill('error','Token expired â refresh');
     if(current)updateOutput();
     return;
   }
   const h=Math.floor(rem/3600),m=Math.floor((rem%3600)/60),s=rem%60;
-  setTokenPill('active',h>0?`Active · ${h}h ${m}m left`:`Active · ${m}m ${s}s left`);
+  setTokenPill('active',h>0?`Active Â· ${h}h ${m}m left`:`Active Â· ${m}m ${s}s left`);
 }
 
-// Strip accidental "Label: value" prefixes (e.g. "User account refresh token:  abc123" → "abc123")
+// Strip accidental "Label: value" prefixes (e.g. "User account refresh token:  abc123" â "abc123")
 function sanitizeCredential(raw){
   const v=raw.trim();
   // If the string contains a colon, take everything after the LAST colon+whitespace run
@@ -324,8 +324,8 @@ async function fetchToken(){
     setTokenPill('error','Fill Client ID, Secret & Refresh Token');return;
   }
   const btn=document.getElementById('get-token-btn');
-  btn.textContent='Getting…';btn.disabled=true;
-  setTokenPill('loading','Requesting…');
+  btn.textContent='Gettingâ¦';btn.disabled=true;
+  setTokenPill('loading','Requestingâ¦');
   try{
     const resp=await fetch(`${getPod()}/oauth/token`,{
       method:'POST',
@@ -343,8 +343,8 @@ async function fetchToken(){
       showOAuthCurlFallback(clientId,clientSecret,refreshToken);
     }
   } catch(e){
-    // Likely CORS — show manual curl fallback
-    setTokenPill('error','CORS blocked — use curl below');
+    // Likely CORS â show manual curl fallback
+    setTokenPill('error','CORS blocked â use curl below');
     showOAuthCurlFallback(clientId,clientSecret,refreshToken);
   }
   btn.textContent='Get Token';btn.disabled=false;
@@ -388,22 +388,22 @@ function onManualToken(){
   if(t){storeToken(t,14400);}
 }
 
-// ─── OPERATIONS ───────────────────────────────────────────────────────────────
+// âââ OPERATIONS âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 const OPS=[
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — DATABASE MANAGEMENT
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'⚙️ Database Management',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â DATABASE MANAGEMENT
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'âï¸ Database Management',list:[
 
   {id:'getLists',label:'Get Lists',apiType:'xml',
     desc:'Retrieve databases, queries, contact lists, or relational tables for your organization.',
     sections:[
-      {t:'Filter',i:'🔍',f:[
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+      {t:'Filter',i:'ð',f:[
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
         {id:'listType',label:'List Type',type:'select',
-          opts:['0 — Databases','1 — Queries','2 — DBs + Contact Lists + Queries','5 — Test Lists','6 — Seed Lists','13 — Suppression Lists','15 — Relational Tables','18 — Contact Lists'],
-          def:'0 — Databases'},
+          opts:['0 â Databases','1 â Queries','2 â DBs + Contact Lists + Queries','5 â Test Lists','6 â Seed Lists','13 â Suppression Lists','15 â Relational Tables','18 â Contact Lists'],
+          def:'0 â Databases'},
         {id:'includeAll',label:'Include All (subfolders)',type:'select',opts:['false','true'],def:'false'},
       ]},
     ],
@@ -417,7 +417,7 @@ const OPS=[
   {id:'getListMetaData',label:'Get Database Details',apiType:'xml',
     desc:'Returns metadata for a database including all field definitions, key columns, and contact counts.',
     sections:[
-      {t:'Database',i:'🗄️',f:[{id:'listId',label:'List ID',type:'text',req:true,ph:'59294'}]},
+      {t:'Database',i:'ðï¸',f:[{id:'listId',label:'List ID',type:'text',req:true,ph:'59294'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <GetListMetaData>\n      <LIST_ID>${f.listId||'LIST_ID'}</LIST_ID>\n    </GetListMetaData>\n  </Body>\n</Envelope>`}
   },
@@ -425,14 +425,14 @@ const OPS=[
   {id:'addRecipient',label:'Add a Contact',apiType:'xml',
     desc:'Adds a new contact to a database. Set UPDATE_IF_FOUND to update existing records on key match.',
     sections:[
-      {t:'Database',i:'🗄️',f:[
+      {t:'Database',i:'ðï¸',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'85628'},
-        {id:'createdFrom',label:'Created From',type:'select',opts:['0 — Imported','1 — Manual','2 — Opted-in','3 — Tracking'],def:'1 — Manual'},
+        {id:'createdFrom',label:'Created From',type:'select',opts:['0 â Imported','1 â Manual','2 â Opted-in','3 â Tracking'],def:'1 â Manual'},
         {id:'updateIfFound',label:'Update if Found',type:'select',opts:['false','true'],def:'false'},
         {id:'sendAutoReply',label:'Send Auto Reply',type:'select',opts:['false','true'],def:'false'},
         {id:'contactListId',label:'Contact List ID (optional)',type:'text',ph:'289032'},
       ]},
-      {t:'Contact Fields',i:'👤',f:[
+      {t:'Contact Fields',i:'ð¤',f:[
         {id:'email',label:'Email',type:'text',ph:'user@example.com'},
         {id:'col1name',label:'Field 1 Name',type:'text',ph:'FirstName'},
         {id:'col1val',label:'Field 1 Value',type:'text',ph:'Jane'},
@@ -455,7 +455,7 @@ const OPS=[
   {id:'selectRecipient',label:'Get Contact Data',apiType:'xml',
     desc:'Retrieves contact field data from a database. Look up by email, encoded recipient ID, or any key field. For databases without a custom unique key, use Key Field Name = RECIPIENT_ID and the numeric recipient ID as the value.',
     sections:[
-      {t:'Lookup',i:'🔍',f:[
+      {t:'Lookup',i:'ð',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',ph:'user@example.com'},
         {id:'encodedId',label:'Encoded Recipient ID',type:'text',ph:'(alternative to email)'},
@@ -476,12 +476,12 @@ const OPS=[
   {id:'updateRecipient',label:'Update Contact',apiType:'xml',
     desc:'Updates fields for an existing contact. Use SYNC_FIELDS to identify the contact if there is no unique identifier.',
     sections:[
-      {t:'Database & Lookup',i:'🗄️',f:[
+      {t:'Database & Lookup',i:'ðï¸',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'85628'},
         {id:'syncField',label:'Sync Field Name',type:'text',ph:'EMAIL or CustomerId'},
         {id:'syncVal',label:'Sync Field Value',type:'text',ph:'user@example.com'},
       ]},
-      {t:'Fields to Update',i:'✏️',f:[
+      {t:'Fields to Update',i:'âï¸',f:[
         {id:'col1name',label:'Field 1 Name',type:'text',ph:'FirstName'},
         {id:'col1val',label:'Field 1 Value',type:'text',ph:'Jane'},
         {id:'col2name',label:'Field 2 Name',type:'text',ph:'LastName'},
@@ -500,10 +500,10 @@ const OPS=[
       return`<Envelope>\n  <Body>\n    <UpdateRecipient>\n      <LIST_ID>${f.listId||'LIST_ID'}</LIST_ID>${sync}${cols}\n    </UpdateRecipient>\n  </Body>\n</Envelope>`}
   },
 
-  {id:'removeRecipient',label:'Remove Contact ⚠️',apiType:'xml',
-    desc:'⚠️ Removes a contact from a database and deletes all tracking history. Irreversible. For databases without a custom email key, use Key Field Name = RECIPIENT_ID with the numeric recipient ID. Note: REST DELETE /contacts returns "Unsupported operation" — use this XML call instead.',
+  {id:'removeRecipient',label:'Remove Contact â ï¸',apiType:'xml',
+    desc:'â ï¸ Removes a contact from a database and deletes all tracking history. Irreversible. For databases without a custom email key, use Key Field Name = RECIPIENT_ID with the numeric recipient ID. Note: REST DELETE /contacts returns "Unsupported operation" â use this XML call instead.',
     sections:[
-      {t:'⚠️ Irreversible',i:'🗑️',f:[
+      {t:'â ï¸ Irreversible',i:'ðï¸',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'10000'},
         {id:'email',label:'Email',type:'text',ph:'user@example.com'},
         {id:'keyName',label:'Key Field Name',type:'text',ph:'RECIPIENT_ID or CustomerId'},
@@ -520,7 +520,7 @@ const OPS=[
   {id:'optOutRecipient',label:'Opt-out Contact',apiType:'xml',
     desc:'Opts a contact out of a database. The contact record is retained but marked as opted-out.',
     sections:[
-      {t:'Contact',i:'🚫',f:[
+      {t:'Contact',i:'ð«',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
         {id:'mailingId',label:'Mailing ID (optional)',type:'text',ph:'Attribute opt-out to a specific mailing'},
@@ -534,7 +534,7 @@ const OPS=[
   {id:'setColumnValue',label:'Set Column Value',apiType:'xml',
     desc:'Directly sets or updates a single field value for a contact.',
     sections:[
-      {t:'Contact & Field',i:'✏️',f:[
+      {t:'Contact & Field',i:'âï¸',f:[
         {id:'listId',label:'Database ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',ph:'user@example.com'},
         {id:'colName',label:'Column Name',type:'text',req:true,ph:'SubscriptionLevel'},
@@ -546,21 +546,21 @@ const OPS=[
   },
 
   {id:'exportList',label:'Export Database',apiType:'xml',
-    desc:'Export contacts from a database, query, or contact list. Returns JOB_ID — poll with GetJobStatus.',
+    desc:'Export contacts from a database, query, or contact list. Returns JOB_ID â poll with GetJobStatus.',
     sections:[
-      {t:'Export Settings',i:'📤',f:[
+      {t:'Export Settings',i:'ð¤',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'59294'},
         {id:'exportType',label:'Export Type',type:'select',opts:['ALL','OPT_IN','OPT_OUT','UNDELIVERABLE'],def:'ALL'},
         {id:'exportFormat',label:'Format',type:'select',opts:['CSV','TAB','PIPE'],def:'CSV'},
         {id:'addToStored',label:'Add to Stored Files',type:'select',opts:['true','false'],def:'true'},
         {id:'fileEncoding',label:'File Encoding',type:'select',opts:['utf-8','iso-8859-1'],def:'utf-8'},
       ]},
-      {t:'Date Range (optional)',i:'📅',f:[
+      {t:'Date Range (optional)',i:'ð',f:[
         {id:'dateStart',label:'Date Start',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Date End',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'useCreatedDate',label:'Use Created Date',type:'select',opts:['false','true'],def:'false'},
       ]},
-      {t:'Columns (optional)',i:'📋',f:[
+      {t:'Columns (optional)',i:'ð',f:[
         {id:'columns',label:'Column Names (comma-separated)',type:'text',ph:'FIRST_NAME,LAST_NAME,EMAIL'},
         {id:'includeRecipId',label:'Include Recipient ID',type:'select',opts:['false','true'],def:'false'},
         {id:'emailNotify',label:'Notify Email',type:'text',ph:'you@example.com'},
@@ -584,7 +584,7 @@ const OPS=[
   {id:'importList',label:'Import to Database',apiType:'xml',
     desc:'Import contacts from a CSV/TAB file on the Acoustic FTP server. Requires a mapping file and source data file.',
     sections:[
-      {t:'FTP Files',i:'📥',f:[
+      {t:'FTP Files',i:'ð¥',f:[
         {id:'mapFile',label:'Map File Name',type:'text',req:true,ph:'list_import_map.xml'},
         {id:'sourceFile',label:'Source File Name',type:'text',req:true,ph:'contacts.csv'},
         {id:'fileEncoding',label:'File Encoding',type:'select',opts:['utf-8','iso-8859-1'],def:'utf-8'},
@@ -598,9 +598,9 @@ const OPS=[
   },
 
   {id:'calculateQuery',label:'Calculate Query',apiType:'xml',
-    desc:'Recalculates a query to refresh its contact count. Returns immediately — use GetJobStatus to track.',
+    desc:'Recalculates a query to refresh its contact count. Returns immediately â use GetJobStatus to track.',
     sections:[
-      {t:'Query',i:'🔢',f:[
+      {t:'Query',i:'ð¢',f:[
         {id:'queryId',label:'Query ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Notify Email (optional)',type:'text',ph:'you@example.com'},
       ]},
@@ -610,12 +610,12 @@ const OPS=[
       return`<Envelope>\n  <Body>\n    <CalculateQuery>\n      <QUERY_ID>${f.queryId||'QUERY_ID'}</QUERY_ID>${en}\n    </CalculateQuery>\n  </Body>\n</Envelope>`}
   },
 
-  {id:'purgeData',label:'Purge Data ⚠️',apiType:'xml',
-    desc:'⚠️ Permanently deletes all or opted-out contacts from a database. Irreversible.',
+  {id:'purgeData',label:'Purge Data â ï¸',apiType:'xml',
+    desc:'â ï¸ Permanently deletes all or opted-out contacts from a database. Irreversible.',
     sections:[
-      {t:'⚠️ Destructive',i:'⚠️',f:[
+      {t:'â ï¸ Destructive',i:'â ï¸',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'45654'},
-        {id:'purgeType',label:'Purge Type',type:'select',opts:['0 — All Contacts','1 — Opt-outs Only'],def:'1 — Opt-outs Only'},
+        {id:'purgeType',label:'Purge Type',type:'select',opts:['0 â All Contacts','1 â Opt-outs Only'],def:'1 â Opt-outs Only'},
       ]},
     ],
     build(f){
@@ -625,18 +625,18 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — CONTACT LISTS
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'📋 Contact Lists',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â CONTACT LISTS
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð Contact Lists',list:[
 
   {id:'createContactList',label:'Create Contact List',apiType:'xml',
     desc:'Creates a new contact list under a parent database. Returns the new CONTACT_LIST_ID.',
     sections:[
-      {t:'Details',i:'📋',f:[
+      {t:'Details',i:'ð',f:[
         {id:'databaseId',label:'Parent Database ID',type:'text',req:true,ph:'565576'},
         {id:'name',label:'Contact List Name',type:'text',req:true,ph:'Re-marketing Contacts'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
         {id:'parentFolderPath',label:'Parent Folder Path (optional)',type:'text',ph:'Main Folder/SubFolder'},
         {id:'createFolder',label:'Auto-create Folder',type:'select',opts:['false','true'],def:'false'},
       ]},
@@ -651,7 +651,7 @@ const OPS=[
   {id:'addContactToList',label:'Add Contact to Contact List',apiType:'xml',
     desc:'Adds an existing database contact to a contact list by email or key field.',
     sections:[
-      {t:'Contact & List',i:'➕',f:[
+      {t:'Contact & List',i:'â',f:[
         {id:'listId',label:'Contact List ID',type:'text',req:true,ph:'289032'},
         {id:'email',label:'Contact Email',type:'text',ph:'user@example.com'},
         {id:'keyName',label:'Key Field Name',type:'text',ph:'CustomerId (if non-email key)'},
@@ -668,7 +668,7 @@ const OPS=[
   {id:'addContactToProgram',label:'Add Contact to Program',apiType:'xml',
     desc:'Enrolls a contact into an automation program (Journey).',
     sections:[
-      {t:'Enrollment',i:'🚀',f:[
+      {t:'Enrollment',i:'ð',f:[
         {id:'programId',label:'Program ID',type:'text',req:true,ph:'1234'},
         {id:'listId',label:'Contact List ID',type:'text',req:true,ph:'289032'},
         {id:'email',label:'Contact Email',type:'text',ph:'user@example.com'},
@@ -686,7 +686,7 @@ const OPS=[
   {id:'getContactMailingDetails',label:'Get Contact Mailing Details',apiType:'xml',
     desc:'Returns mailing engagement details (opens, clicks) for a specific contact.',
     sections:[
-      {t:'Contact',i:'📊',f:[
+      {t:'Contact',i:'ð',f:[
         {id:'listId',label:'Database ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
         {id:'mailingId',label:'Mailing ID (optional)',type:'text',ph:'Filter to a specific mailing'},
@@ -699,20 +699,20 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — RELATIONAL TABLES
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'🗃️ Relational Tables',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â RELATIONAL TABLES
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ðï¸ Relational Tables',list:[
 
   {id:'createTable',label:'Create Relational Table',apiType:'xml',
     desc:'Creates a new relational table. Define columns with names and types; at least one must be the key column.',
     sections:[
-      {t:'Table Definition',i:'🗃️',f:[
+      {t:'Table Definition',i:'ðï¸',f:[
         {id:'tableName',label:'Table Name',type:'text',req:true,ph:'PurchaseHistory'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
         {id:'folderPath',label:'Folder Path (optional)',type:'text',ph:'My Tables/Folder'},
       ]},
-      {t:'Columns',i:'📊',f:[
+      {t:'Columns',i:'ð',f:[
         {id:'keyCol',label:'Key Column Name',type:'text',req:true,ph:'ContactID'},
         {id:'col1',label:'Column 1 Name',type:'text',ph:'PurchaseDate'},
         {id:'col1type',label:'Column 1 Type',type:'select',opts:['TEXT','YESNO','NUMERIC','DATE','TIMESTAMP','COUNTRY','SYNC_OBJECT'],def:'DATE'},
@@ -736,8 +736,8 @@ const OPS=[
   {id:'insertUpdateTable',label:'Insert/Update Table Row',apiType:'xml',
     desc:'Inserts a new row or updates an existing row in a relational table. Key column determines match.',
     sections:[
-      {t:'Table',i:'🗃️',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
-      {t:'Row Data',i:'📝',f:[
+      {t:'Table',i:'ðï¸',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
+      {t:'Row Data',i:'ð',f:[
         {id:'col1name',label:'Column 1 (Key)',type:'text',req:true,ph:'ContactID'},
         {id:'col1val',label:'Column 1 Value',type:'text',req:true,ph:'C-12345'},
         {id:'col2name',label:'Column 2 Name',type:'text',ph:'PurchaseDate'},
@@ -759,7 +759,7 @@ const OPS=[
   {id:'deleteTableData',label:'Delete Table Rows',apiType:'xml',
     desc:'Deletes specific rows from a relational table by key value.',
     sections:[
-      {t:'Target Rows',i:'🗑️',f:[
+      {t:'Target Rows',i:'ðï¸',f:[
         {id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'},
         {id:'keyName',label:'Key Column Name',type:'text',req:true,ph:'ContactID'},
         {id:'keyVal',label:'Key Value',type:'text',req:true,ph:'C-12345'},
@@ -772,7 +772,7 @@ const OPS=[
   {id:'exportTable',label:'Export Relational Table',apiType:'xml',
     desc:'Export all data from a relational table. Returns JOB_ID.',
     sections:[
-      {t:'Export',i:'📤',f:[
+      {t:'Export',i:'ð¤',f:[
         {id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'},
         {id:'exportFormat',label:'Format',type:'select',opts:['CSV','TAB','PIPE'],def:'CSV'},
         {id:'addToStored',label:'Add to Stored Files',type:'select',opts:['true','false'],def:'true'},
@@ -788,7 +788,7 @@ const OPS=[
   {id:'importTable',label:'Import Relational Table',apiType:'xml',
     desc:'Import data into a relational table from a file on the FTP server. Returns JOB_ID.',
     sections:[
-      {t:'FTP Files',i:'📥',f:[
+      {t:'FTP Files',i:'ð¥',f:[
         {id:'mapFile',label:'Map File Name',type:'text',req:true,ph:'table_import_map.xml'},
         {id:'sourceFile',label:'Source File Name',type:'text',req:true,ph:'data.csv'},
         {id:'emailNotify',label:'Notify Email',type:'text',ph:'you@example.com'},
@@ -802,7 +802,7 @@ const OPS=[
   {id:'joinTable',label:'Join Table to Database',apiType:'xml',
     desc:'Links a relational table to a database by mapping key columns.',
     sections:[
-      {t:'Join Configuration',i:'🔗',f:[
+      {t:'Join Configuration',i:'ð',f:[
         {id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'},
         {id:'listId',label:'Database ID',type:'text',req:true,ph:'45654'},
         {id:'tableKey',label:'Table Key Column',type:'text',req:true,ph:'ContactID'},
@@ -813,34 +813,34 @@ const OPS=[
       return`<Envelope>\n  <Body>\n    <JoinTable>\n      <TABLE_ID>${f.tableId||'TABLE_ID'}</TABLE_ID>\n      <LIST_ID>${f.listId||'LIST_ID'}</LIST_ID>\n      <TABLE_VISIBILITY>1</TABLE_VISIBILITY>\n      <LIST_VISIBILITY>1</LIST_VISIBILITY>\n      <JOINS>\n        <JOIN>\n          <TABLE_COLUMN>${f.tableKey||'TableKey'}</TABLE_COLUMN>\n          <LIST_COLUMN>${f.listKey||'ListKey'}</LIST_COLUMN>\n        </JOIN>\n      </JOINS>\n    </JoinTable>\n  </Body>\n</Envelope>`}
   },
 
-  {id:'purgeTable',label:'Purge Table ⚠️',apiType:'xml',
-    desc:'⚠️ Deletes all rows from a relational table without deleting the table structure. Irreversible.',
+  {id:'purgeTable',label:'Purge Table â ï¸',apiType:'xml',
+    desc:'â ï¸ Deletes all rows from a relational table without deleting the table structure. Irreversible.',
     sections:[
-      {t:'⚠️ Destructive',i:'⚠️',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
+      {t:'â ï¸ Destructive',i:'â ï¸',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <PurgeTable>\n      <TABLE_ID>${f.tableId||'TABLE_ID'}</TABLE_ID>\n    </PurgeTable>\n  </Body>\n</Envelope>`}
   },
 
-  {id:'deleteTable',label:'Delete Table ⚠️',apiType:'xml',
-    desc:'⚠️ Permanently deletes a relational table and all of its data. Irreversible.',
+  {id:'deleteTable',label:'Delete Table â ï¸',apiType:'xml',
+    desc:'â ï¸ Permanently deletes a relational table and all of its data. Irreversible.',
     sections:[
-      {t:'⚠️ Irreversible',i:'⚠️',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
+      {t:'â ï¸ Irreversible',i:'â ï¸',f:[{id:'tableId',label:'Table ID',type:'text',req:true,ph:'12345'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <DeleteTable>\n      <TABLE_ID>${f.tableId||'TABLE_ID'}</TABLE_ID>\n    </DeleteTable>\n  </Body>\n</Envelope>`}
   },
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — TEMPLATES & MAILINGS
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'📧 Templates & Mailings',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â TEMPLATES & MAILINGS
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð§ Templates & Mailings',list:[
 
   {id:'getMailingTemplates',label:'Get Mailing Templates',apiType:'xml',
     desc:'Retrieve available email templates. Filter by visibility and modification date.',
     sections:[
-      {t:'Filter',i:'🔍',f:[
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+      {t:'Filter',i:'ð',f:[
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
         {id:'dateStart',label:'Last Modified Start (optional)',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Last Modified End (optional)',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
       ]},
@@ -855,19 +855,19 @@ const OPS=[
   {id:'scheduleMailing',label:'Schedule Mailing',apiType:'xml',
     desc:'Creates a mailing from a template, targets a list, and schedules it for delivery. Returns MAILING_ID.',
     sections:[
-      {t:'Required',i:'📧',f:[
+      {t:'Required',i:'ð§',f:[
         {id:'templateId',label:'Template ID',type:'text',req:true,ph:'1000'},
         {id:'listId',label:'List / Database / Query ID',type:'text',req:true,ph:'100'},
         {id:'mailingName',label:'Mailing Name',type:'text',req:true,ph:'Spring Promo 2025'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
       ]},
-      {t:'Content Overrides (optional)',i:'✏️',f:[
+      {t:'Content Overrides (optional)',i:'âï¸',f:[
         {id:'subject',label:'Subject Line',type:'text',ph:'Your exclusive offer inside'},
         {id:'fromName',label:'From Name',type:'text',ph:'Acoustic Team'},
         {id:'fromAddress',label:'From Address',type:'text',ph:'noreply@example.com'},
         {id:'replyTo',label:'Reply-To',type:'text',ph:'support@example.com'},
       ]},
-      {t:'Scheduling',i:'📅',f:[
+      {t:'Scheduling',i:'ð',f:[
         {id:'scheduled',label:'Scheduled Date/Time',type:'text',ph:'MM/DD/YYYY HH:MM:SS AM'},
         {id:'folderPath',label:'Folder Path',type:'text',ph:'Sent Mailings/2025'},
       ]},
@@ -886,7 +886,7 @@ const OPS=[
   {id:'sendMailing',label:'Send Mailing (Immediate)',apiType:'xml',
     desc:'Immediately sends a mailing that has already been scheduled.',
     sections:[
-      {t:'Mailing',i:'🚀',f:[{id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'}]},
+      {t:'Mailing',i:'ð',f:[{id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <SendMailing>\n      <MailingId>${f.mailingId||'MAILING_ID'}</MailingId>\n    </SendMailing>\n  </Body>\n</Envelope>`}
   },
@@ -894,7 +894,7 @@ const OPS=[
   {id:'getMessageGroupDetails',label:'Get Message Group Details',apiType:'xml',
     desc:'Returns details for an automated message group (campaign/journey).',
     sections:[
-      {t:'Group',i:'📬',f:[{id:'mailingId',label:'Mailing / Campaign ID',type:'text',req:true,ph:'3445678'}]},
+      {t:'Group',i:'ð¬',f:[{id:'mailingId',label:'Mailing / Campaign ID',type:'text',req:true,ph:'3445678'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <GetMessageGroupDetails>\n      <MAILING_ID>${f.mailingId||'MAILING_ID'}</MAILING_ID>\n    </GetMessageGroupDetails>\n  </Body>\n</Envelope>`}
   },
@@ -902,7 +902,7 @@ const OPS=[
   {id:'previewMailing',label:'Preview Mailing',apiType:'xml',
     desc:'Returns a preview of the mailing body for a specific contact.',
     sections:[
-      {t:'Preview',i:'👁️',f:[
+      {t:'Preview',i:'ðï¸',f:[
         {id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'},
         {id:'recipientEmail',label:'Recipient Email (for personalization)',type:'text',ph:'user@example.com'},
       ]},
@@ -914,19 +914,19 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — REPORTING
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'📊 Reporting',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â REPORTING
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð Reporting',list:[
 
   {id:'getSentMailingsOrg',label:'Get Sent Mailings (Org)',apiType:'xml',
     desc:'Returns all mailings for the organization within a date range. Requires Organization Admin rights.',
     sections:[
-      {t:'Date Range',i:'📅',f:[
+      {t:'Date Range',i:'ð',f:[
         {id:'dateStart',label:'Date Start',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Date End',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
       ]},
-      {t:'Filters',i:'🔍',f:[
+      {t:'Filters',i:'ð',f:[
         {id:'private',label:'Private',type:'select',opts:['true','false'],def:'true'},
         {id:'shared',label:'Shared',type:'select',opts:['false','true'],def:'false'},
         {id:'sent',label:'Sent',type:'select',opts:['true','false'],def:'true'},
@@ -948,7 +948,7 @@ const OPS=[
   {id:'getSentMailingsList',label:'Get Sent Mailings (List)',apiType:'xml',
     desc:'Returns all mailings sent to a specific list or database within a date range.',
     sections:[
-      {t:'List & Date',i:'📅',f:[
+      {t:'List & Date',i:'ð',f:[
         {id:'listId',label:'List ID',type:'text',req:true,ph:'45654'},
         {id:'dateStart',label:'Date Start',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Date End',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
@@ -961,7 +961,7 @@ const OPS=[
   {id:'getAggregateTrackingMailing',label:'Aggregate Tracking (Mailing)',apiType:'xml',
     desc:'Returns opens, clicks, bounces, and other metrics for a specific mailing.',
     sections:[
-      {t:'Mailing',i:'📊',f:[
+      {t:'Mailing',i:'ð',f:[
         {id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'},
         {id:'inProgress',label:'In Progress (active sends)',type:'select',opts:['false','true'],def:'false'},
       ]},
@@ -974,7 +974,7 @@ const OPS=[
   {id:'getAggregateTrackingOrg',label:'Aggregate Tracking (Org)',apiType:'xml',
     desc:'Returns aggregate tracking metrics for all organization mailings in a date range.',
     sections:[
-      {t:'Date Range',i:'📅',f:[
+      {t:'Date Range',i:'ð',f:[
         {id:'dateStart',label:'Date Start',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Date End',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'private',label:'Private',type:'select',opts:['true','false'],def:'true'},
@@ -988,16 +988,16 @@ const OPS=[
   },
 
   {id:'rawRecipientDataExport',label:'Raw Recipient Data Export',apiType:'xml',
-    desc:'Exports raw event-level tracking data (opens, clicks, bounces). Returns JOB_ID — poll with GetJobStatus.',
+    desc:'Exports raw event-level tracking data (opens, clicks, bounces). Returns JOB_ID â poll with GetJobStatus.',
     sections:[
-      {t:'Scope',i:'🎯',f:[
+      {t:'Scope',i:'ð¯',f:[
         {id:'mailingId',label:'Mailing ID (optional)',type:'text',ph:'Leave blank for org-wide'},
         {id:'listId',label:'List ID (optional)',type:'text',ph:'Filter by database'},
         {id:'eventStart',label:'Event Date Start',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'eventEnd',label:'Event Date End',type:'text',ph:'MM/DD/YYYY HH:MM:SS'},
       ]},
-      {t:'Output',i:'📤',f:[
-        {id:'exportFormat',label:'Format',type:'select',opts:['0 — CSV','1 — Pipe','2 — Tab'],def:'0 — CSV'},
+      {t:'Output',i:'ð¤',f:[
+        {id:'exportFormat',label:'Format',type:'select',opts:['0 â CSV','1 â Pipe','2 â Tab'],def:'0 â CSV'},
         {id:'moveToFtp',label:'Move to FTP',type:'select',opts:['false','true'],def:'false'},
         {id:'emailNotify',label:'Notify Email',type:'text',ph:'you@example.com'},
       ]},
@@ -1016,7 +1016,7 @@ const OPS=[
   {id:'getReportIdByDate',label:'Get Report IDs by Date',apiType:'xml',
     desc:'Returns report IDs for mailings sent within a date range.',
     sections:[
-      {t:'Date Range',i:'📅',f:[
+      {t:'Date Range',i:'ð',f:[
         {id:'dateStart',label:'Date Start',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'dateEnd',label:'Date End',type:'text',req:true,ph:'MM/DD/YYYY HH:MM:SS'},
         {id:'private',label:'Include Private',type:'select',opts:['true','false'],def:'true'},
@@ -1030,7 +1030,7 @@ const OPS=[
   {id:'listRecipientMailings',label:'List Contact Mailings',apiType:'xml',
     desc:'Lists all mailings sent to a specific contact.',
     sections:[
-      {t:'Contact',i:'👤',f:[
+      {t:'Contact',i:'ð¤',f:[
         {id:'listId',label:'Database ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
       ]},
@@ -1041,15 +1041,15 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — AUTOMATION & SCORING
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'🤖 Automation & Scoring',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â AUTOMATION & SCORING
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð¤ Automation & Scoring',list:[
 
   {id:'getContactScores',label:'Get Contact Scores',apiType:'xml',
     desc:'Returns scoring model scores for a specific contact.',
     sections:[
-      {t:'Contact',i:'👤',f:[
+      {t:'Contact',i:'ð¤',f:[
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
         {id:'listId',label:'Database ID (optional)',type:'text',ph:'45654'},
       ]},
@@ -1068,7 +1068,7 @@ const OPS=[
   {id:'getContactPrograms',label:'Get Contact Programs',apiType:'xml',
     desc:'Returns all automation programs a contact is enrolled in.',
     sections:[
-      {t:'Contact',i:'👤',f:[
+      {t:'Contact',i:'ð¤',f:[
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
         {id:'listId',label:'Database ID (optional)',type:'text',ph:'45654'},
       ]},
@@ -1086,18 +1086,18 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — DYNAMIC CONTENT
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'🎯 Dynamic Content',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â DYNAMIC CONTENT
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð¯ Dynamic Content',list:[
 
   {id:'addDCRuleset',label:'Add DC Ruleset',apiType:'xml',
     desc:'Creates a new dynamic content ruleset with a default content block.',
     sections:[
-      {t:'Ruleset',i:'➕',f:[
+      {t:'Ruleset',i:'â',f:[
         {id:'dcName',label:'DC Rule Name',type:'text',req:true,ph:'PromoContentRule2025'},
         {id:'defaultContent',label:'Default Content',type:'text',ph:'Default fallback content'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
       ]},
     ],
     build(f){
@@ -1108,9 +1108,9 @@ const OPS=[
   {id:'getDCRuleset',label:'Get DC Ruleset',apiType:'xml',
     desc:'Retrieves the rules and content blocks for a dynamic content ruleset.',
     sections:[
-      {t:'Ruleset',i:'🎯',f:[
+      {t:'Ruleset',i:'ð¯',f:[
         {id:'dcName',label:'DC Rule Name',type:'text',req:true,ph:'My DC Rule'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
       ]},
     ],
     build(f){
@@ -1121,7 +1121,7 @@ const OPS=[
   {id:'listDCRulesetsForMailing',label:'List DC Rulesets for Mailing',apiType:'xml',
     desc:'Lists all dynamic content rulesets assigned to a specific mailing.',
     sections:[
-      {t:'Mailing',i:'📧',f:[{id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'}]},
+      {t:'Mailing',i:'ð§',f:[{id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <ListDCRulesetsForMailing>\n      <MAILING_ID>${f.mailingId||'MAILING_ID'}</MAILING_ID>\n    </ListDCRulesetsForMailing>\n  </Body>\n</Envelope>`}
   },
@@ -1129,7 +1129,7 @@ const OPS=[
   {id:'validateDCRuleset',label:'Validate DC Ruleset',apiType:'xml',
     desc:'Validates a dynamic content ruleset against a mailing to check for errors.',
     sections:[
-      {t:'Validation',i:'✅',f:[
+      {t:'Validation',i:'â',f:[
         {id:'dcName',label:'DC Rule Name',type:'text',req:true,ph:'My DC Rule'},
         {id:'mailingId',label:'Mailing ID',type:'text',req:true,ph:'9700'},
       ]},
@@ -1137,12 +1137,12 @@ const OPS=[
     build(f){return`<Envelope>\n  <Body>\n    <ValidateDCRuleset>\n      <DC_NAME>${f.dcName||'DC_NAME'}</DC_NAME>\n      <MAILING_ID>${f.mailingId||'MAILING_ID'}</MAILING_ID>\n    </ValidateDCRuleset>\n  </Body>\n</Envelope>`}
   },
 
-  {id:'deleteDCRuleset',label:'Delete DC Ruleset ⚠️',apiType:'xml',
-    desc:'⚠️ Permanently deletes a dynamic content ruleset.',
+  {id:'deleteDCRuleset',label:'Delete DC Ruleset â ï¸',apiType:'xml',
+    desc:'â ï¸ Permanently deletes a dynamic content ruleset.',
     sections:[
-      {t:'⚠️ Irreversible',i:'🗑️',f:[
+      {t:'â ï¸ Irreversible',i:'ðï¸',f:[
         {id:'dcName',label:'DC Rule Name',type:'text',req:true,ph:'My DC Rule'},
-        {id:'visibility',label:'Visibility',type:'select',opts:['0 — Private','1 — Shared'],def:'0 — Private'},
+        {id:'visibility',label:'Visibility',type:'select',opts:['0 â Private','1 â Shared'],def:'0 â Private'},
       ]},
     ],
     build(f){
@@ -1152,15 +1152,15 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// XML API — JOBS & SYSTEM
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'⚙️ Jobs & System',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// XML API â JOBS & SYSTEM
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'âï¸ Jobs & System',list:[
 
   {id:'getJobStatus',label:'Get Job Status',apiType:'xml',
     desc:'Check status of a background job (export, import, etc.). Returns WAITING, RUNNING, COMPLETE, ERROR, or CANCELLED.',
     sections:[
-      {t:'Job',i:'📋',f:[{id:'jobId',label:'Job ID',type:'text',req:true,ph:'40865'}]},
+      {t:'Job',i:'ð',f:[{id:'jobId',label:'Job ID',type:'text',req:true,ph:'40865'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <GetJobStatus>\n      <JOB_ID>${f.jobId||'JOB_ID'}</JOB_ID>\n    </GetJobStatus>\n  </Body>\n</Envelope>`}
   },
@@ -1168,7 +1168,7 @@ const OPS=[
   {id:'deleteJob',label:'Delete Job',apiType:'xml',
     desc:'Cancels and removes a pending or running background job.',
     sections:[
-      {t:'Job',i:'🗑️',f:[{id:'jobId',label:'Job ID',type:'text',req:true,ph:'40865'}]},
+      {t:'Job',i:'ðï¸',f:[{id:'jobId',label:'Job ID',type:'text',req:true,ph:'40865'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <DeleteJob>\n      <JOB_ID>${f.jobId||'JOB_ID'}</JOB_ID>\n    </DeleteJob>\n  </Body>\n</Envelope>`}
   },
@@ -1176,7 +1176,7 @@ const OPS=[
   {id:'getFolderPath',label:'Get Folder Path',apiType:'xml',
     desc:'Returns the folder path for a given database or mailing.',
     sections:[
-      {t:'Resource',i:'📁',f:[{id:'listId',label:'List / Mailing ID',type:'text',req:true,ph:'45654'}]},
+      {t:'Resource',i:'ð',f:[{id:'listId',label:'List / Mailing ID',type:'text',req:true,ph:'45654'}]},
     ],
     build(f){return`<Envelope>\n  <Body>\n    <GetFolderPath>\n      <LIST_ID>${f.listId||'LIST_ID'}</LIST_ID>\n    </GetFolderPath>\n  </Body>\n</Envelope>`}
   },
@@ -1184,7 +1184,7 @@ const OPS=[
   {id:'doubleOptIn',label:'Double Opt-In Contact',apiType:'xml',
     desc:'Sends a double opt-in confirmation email to a contact.',
     sections:[
-      {t:'Contact',i:'✉️',f:[
+      {t:'Contact',i:'âï¸',f:[
         {id:'listId',label:'Database ID',type:'text',req:true,ph:'45654'},
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
       ]},
@@ -1194,16 +1194,16 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// REST API — DATABASES
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'🗄️ REST · Databases',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// REST API â DATABASES
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ðï¸ REST Â· Databases',list:[
 
   {id:'restCreateDatabase',label:'Create Database',apiType:'rest',method:'POST',
     desc:'Creates a new contact database. Returns the new database ID and its URL. Confirmed working: POST /rest/databases with name + visibility returns {id, location}.',
     endpoint:'/rest/databases',
     sections:[
-      {t:'Database',i:'🗄️',f:[
+      {t:'Database',i:'ðï¸',f:[
         {id:'dbName',label:'Database Name',type:'text',req:true,ph:'My Campaign DB'},
         {id:'visibility',label:'Visibility',type:'select',opts:['Private','Shared'],def:'Private'},
         {id:'doubleOptIn',label:'Double Opt-In',type:'select',opts:['false','true'],def:'false'},
@@ -1221,7 +1221,7 @@ const OPS=[
     desc:'Retrieve metadata for a specific database by ID. Returns name, visibility, keyColumns, columns, doubleOptIn, parentFolderPath. Confirmed working.',
     endpoint:'/rest/databases/{databaseId}',
     sections:[
-      {t:'Database',i:'🗄️',f:[
+      {t:'Database',i:'ðï¸',f:[
         {id:'databaseId',label:'Database ID',type:'text',req:true,ph:'17958998'},
       ]},
     ],
@@ -1229,10 +1229,10 @@ const OPS=[
   },
 
   {id:'restAddContactToDb',label:'Add Contact to Database',apiType:'rest',method:'POST',
-    desc:'Creates a new contact in a database. Returns the contact\'s numeric recipientId. Confirmed working: email is the only required field. Note: do NOT include createdFrom — it cannot be set via API.',
+    desc:'Creates a new contact in a database. Returns the contact\'s numeric recipientId. Confirmed working: email is the only required field. Note: do NOT include createdFrom â it cannot be set via API.',
     endpoint:'/rest/databases/{databaseId}/contacts',
     sections:[
-      {t:'Contact',i:'👤',f:[
+      {t:'Contact',i:'ð¤',f:[
         {id:'databaseId',label:'Database ID',type:'text',req:true,ph:'17958998'},
         {id:'email',label:'Email',type:'text',req:true,ph:'user@example.com'},
         {id:'emailType',label:'Email Type',type:'select',opts:['HTML','TEXT'],def:'HTML'},
@@ -1247,7 +1247,7 @@ const OPS=[
     desc:'Returns the list of email message templates. Supports pagination via ?page=N. Confirmed working: returns templateMessageMetaData, folder, and owner for each template.',
     endpoint:'/rest/templates',
     sections:[
-      {t:'Pagination',i:'📄',f:[
+      {t:'Pagination',i:'ð',f:[
         {id:'page',label:'Page',type:'text',ph:'1',def:'1'},
       ]},
     ],
@@ -1260,7 +1260,7 @@ const OPS=[
     desc:'Retrieve a single email template by its mailing/template ID. Confirmed working: returns full template metadata including name, subject, fromName, fromAddress, visibility, trackingLevel.',
     endpoint:'/rest/templates/{templateId}',
     sections:[
-      {t:'Template',i:'✉️',f:[
+      {t:'Template',i:'âï¸',f:[
         {id:'templateId',label:'Template ID',type:'text',req:true,ph:'30165436'},
       ]},
     ],
@@ -1271,7 +1271,7 @@ const OPS=[
     desc:'Returns all Acoustic Campaign programs (automated journeys). Supports pagination. Confirmed working: returns name, startDate, endDate, active status, createdBy, modifiedBy, id.',
     endpoint:'/rest/programs',
     sections:[
-      {t:'Pagination',i:'📄',f:[
+      {t:'Pagination',i:'ð',f:[
         {id:'page',label:'Page',type:'text',ph:'1',def:'1'},
       ]},
     ],
@@ -1282,16 +1282,16 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// REST API — CONTACTS
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'👤 REST · Contacts',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// REST API â CONTACTS
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð¤ REST Â· Contacts',list:[
 
   {id:'restGetContact',label:'Get Contact by ID',apiType:'rest',method:'GET',
     desc:'Retrieve a contact record from a database by their numeric Recipient ID. Confirmed working: GET /rest/databases/{id}/contacts/{recipientId} returns full contact data including email, optInDate, optOutDate, customFields, and createdFrom.',
     endpoint:'/rest/databases/{databaseId}/contacts/{recipientId}',
     sections:[
-      {t:'Lookup',i:'🔍',f:[
+      {t:'Lookup',i:'ð',f:[
         {id:'databaseId',label:'Database ID',type:'text',req:true,ph:'17958998'},
         {id:'recipientId',label:'Recipient ID (numeric)',type:'text',req:true,ph:'1351373933061',hint:'Numeric recipient ID returned from AddRecipient or REST POST /contacts'},
       ]},
@@ -1304,16 +1304,16 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// REST API — MOBILE PUSH
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'📱 REST · Mobile Push',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// REST API â MOBILE PUSH
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð± REST Â· Mobile Push',list:[
 
   {id:'pushToSegment',label:'Push to Segment',apiType:'rest',method:'POST',
     desc:'Send a mobile push notification to a contact source (database, list, or query).',
     endpoint:'/channels/push/publishedmessages/{id}/sendjobs',
     sections:[
-      {t:'Message & Target',i:'📱',f:[
+      {t:'Message & Target',i:'ð±',f:[
         {id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'},
         {id:'messageName',label:'Message Name (must be unique)',type:'text',req:true,ph:'Holiday 2025 Segment Push'},
         {id:'contactSourceId',label:'Contact Source ID',type:'text',ph:'332229'},
@@ -1336,7 +1336,7 @@ const OPS=[
     desc:'Send a mobile push notification to a single contact.',
     endpoint:'/channels/push/publishedmessages/{id}/contactjobs',
     sections:[
-      {t:'Target Contact',i:'📲',f:[
+      {t:'Target Contact',i:'ð²',f:[
         {id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'},
         {id:'messageName',label:'Message Name (must be unique)',type:'text',req:true,ph:'Transactional Push #001'},
         {id:'contactId',label:'Contact ID',type:'text',ph:'12345'},
@@ -1353,7 +1353,7 @@ const OPS=[
     desc:'Send a mobile push notification directly to a specific device token.',
     endpoint:'/channels/push/publishedmessages/{id}/devicejobs',
     sections:[
-      {t:'Target Device',i:'📳',f:[
+      {t:'Target Device',i:'ð³',f:[
         {id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'},
         {id:'messageName',label:'Message Name (must be unique)',type:'text',req:true,ph:'Device Push #001'},
         {id:'deviceToken',label:'Device Token',type:'text',ph:'abc123devicetoken'},
@@ -1369,11 +1369,11 @@ const OPS=[
   },
 
   {id:'getPublishedMessages',label:'Get Published Messages',apiType:'rest',method:'GET',
-    desc:'Retrieve the list of published messages available for sending via the API. Note: this endpoint uses the legacy REST path /rest/api/0/ — confirm your pod supports it. The orgId must be your numeric organization ID (not the UUID from XML API).',
+    desc:'Retrieve the list of published messages available for sending via the API. Note: this endpoint uses the legacy REST path /rest/api/0/ â confirm your pod supports it. The orgId must be your numeric organization ID (not the UUID from XML API).',
     endpoint:'/rest/api/0/organizations/{orgId}/publishedmessages',
     sections:[
-      {t:'Filter',i:'🔍',f:[
-        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID — different from the UUID in ORGANIZATION_ID XML responses'},
+      {t:'Filter',i:'ð',f:[
+        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID â different from the UUID in ORGANIZATION_ID XML responses'},
         {id:'channel',label:'Channel',type:'select',opts:['EMAIL','SMS','PUSH'],def:'PUSH'},
         {id:'page',label:'Page',type:'text',ph:'0',def:'0'},
         {id:'pageSize',label:'Page Size',type:'text',ph:'25',def:'25'},
@@ -1387,7 +1387,7 @@ const OPS=[
     desc:'Retrieve the rich HTML content attached to a published push message.',
     endpoint:'/channels/push/publishedmessages/{id}/richcontent',
     sections:[
-      {t:'Message',i:'🖼️',f:[{id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'}]},
+      {t:'Message',i:'ð¼ï¸',f:[{id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'}]},
     ],
     build(f){
       return{url:`/channels/push/publishedmessages/${f.publishedMsgId||'PUB_MSG_ID'}/richcontent`,method:'GET',body:null}}
@@ -1397,7 +1397,7 @@ const OPS=[
     desc:'Attach rich HTML content to a mobile push message.',
     endpoint:'/channels/push/publishedmessages/{id}/richcontent',
     sections:[
-      {t:'Content',i:'🖼️',f:[
+      {t:'Content',i:'ð¼ï¸',f:[
         {id:'publishedMsgId',label:'Published Message ID',type:'text',req:true,ph:'PUB_MSG_ID'},
         {id:'contentType',label:'Content Type',type:'select',opts:['HTML','URL'],def:'HTML'},
         {id:'content',label:'HTML or URL',type:'text',ph:'<html>Rich content here</html>'},
@@ -1410,26 +1410,26 @@ const OPS=[
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// REST API — SMS
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'💬 REST · SMS',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// REST API â SMS
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð¬ REST Â· SMS',list:[
 
   {id:'smsTransactional',label:'Send Transactional SMS',apiType:'rest',method:'POST',
     desc:'Send a transactional SMS to up to 1,000 contacts per request. Requires SMS to be enabled for your org.',
     endpoint:'/channels/sms/sends',
     sections:[
-      {t:'Message',i:'💬',f:[
+      {t:'Message',i:'ð¬',f:[
         {id:'content',label:'SMS Content (max 800 chars)',type:'text',req:true,ph:'Your order #ORD-123 has shipped!'},
         {id:'channelQualifier',label:'Channel Qualifier (SMS Program ID)',type:'text',req:true,ph:'sms-program-id'},
       ]},
-      {t:'Recipient',i:'👤',f:[
+      {t:'Recipient',i:'ð¤',f:[
         {id:'contactId',label:'Phone Number (with country code)',type:'text',ph:'+12025551234'},
         {id:'lookupField',label:'Lookup Field (if no phone)',type:'text',ph:'email'},
         {id:'lookupValue',label:'Lookup Value',type:'text',ph:'user@example.com'},
         {id:'lookupChannel',label:'Lookup Channel',type:'text',ph:'sms'},
       ]},
-      {t:'Personalization (optional)',i:'✨',f:[
+      {t:'Personalization (optional)',i:'â¨',f:[
         {id:'p1key',label:'Param 1 Key',type:'text',ph:'firstName'},
         {id:'p1val',label:'Param 1 Value',type:'text',ph:'Jane'},
         {id:'p2key',label:'Param 2 Key',type:'text',ph:'orderNum'},
@@ -1450,7 +1450,7 @@ const OPS=[
     desc:'Submit an external SMS consent/opt-in record for a contact from a third-party source.',
     endpoint:'/channels/sms/consent',
     sections:[
-      {t:'Consent Record',i:'✅',f:[
+      {t:'Consent Record',i:'â',f:[
         {id:'phone',label:'Phone Number (with country code)',type:'text',req:true,ph:'+12025551234'},
         {id:'programId',label:'SMS Program ID',type:'text',req:true,ph:'sms-program-id'},
         {id:'status',label:'Consent Status',type:'select',opts:['OPT_IN','OPT_OUT'],def:'OPT_IN'},
@@ -1465,33 +1465,33 @@ const OPS=[
     desc:'Check the delivery status of a previously sent transactional SMS.',
     endpoint:'/channels/sms/sends/{sendId}/status',
     sections:[
-      {t:'Send',i:'📊',f:[{id:'sendId',label:'Send ID (from send response)',type:'text',req:true,ph:'response-id'}]},
+      {t:'Send',i:'ð',f:[{id:'sendId',label:'Send ID (from send response)',type:'text',req:true,ph:'response-id'}]},
     ],
     build(f){return{url:`/channels/sms/sends/${f.sendId||'SEND_ID'}/status`,method:'GET',body:null}}
   },
 
 ]},
 
-// ══════════════════════════════════════════════════════════════════════════════
-// REST API — DLL WHITELIST
-// ══════════════════════════════════════════════════════════════════════════════
-{cat:'🌐 REST · DLL Whitelist',list:[
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// REST API â DLL WHITELIST
+// ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+{cat:'ð REST Â· DLL Whitelist',list:[
 
   {id:'getDllDomains',label:'Get DLL Whitelist Domains',apiType:'rest',method:'GET',
-    desc:'Returns all domains on the Dynamic Link Library whitelist. ⚠️ Uses legacy /rest/api/0/ path — confirm with Acoustic support for your pod. The orgId here is the numeric organization ID (findable via Campaign Admin or Acoustic support).',
+    desc:'Returns all domains on the Dynamic Link Library whitelist. â ï¸ Uses legacy /rest/api/0/ path â confirm with Acoustic support for your pod. The orgId here is the numeric organization ID (findable via Campaign Admin or Acoustic support).',
     endpoint:'/rest/api/0/organizations/{orgId}/whitelist/domains',
     sections:[
-      {t:'Org',i:'🏢',f:[{id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID — ask Acoustic support or find in Campaign Admin settings'}]},
+      {t:'Org',i:'ð¢',f:[{id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID â ask Acoustic support or find in Campaign Admin settings'}]},
     ],
     build(f){return{url:`/rest/api/0/organizations/${f.orgId||'YOUR_ORG_ID'}/whitelist/domains`,method:'GET',body:null}}
   },
 
   {id:'addDllDomain',label:'Add DLL Domain',apiType:'rest',method:'POST',
-    desc:'Adds a new domain to the DLL whitelist for dynamic link tracking. ⚠️ Uses legacy /rest/api/0/ path — confirm with Acoustic support for your pod.',
+    desc:'Adds a new domain to the DLL whitelist for dynamic link tracking. â ï¸ Uses legacy /rest/api/0/ path â confirm with Acoustic support for your pod.',
     endpoint:'/rest/api/0/organizations/{orgId}/whitelist/domains',
     sections:[
-      {t:'Domain',i:'🌐',f:[
-        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID — not the UUID from XML API'},
+      {t:'Domain',i:'ð',f:[
+        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID â not the UUID from XML API'},
         {id:'domain',label:'Domain',type:'text',req:true,ph:'yourdomain.com'},
       ]},
     ],
@@ -1500,11 +1500,11 @@ const OPS=[
   },
 
   {id:'removeDllDomain',label:'Remove DLL Domain',apiType:'rest',method:'DELETE',
-    desc:'Removes a domain from the DLL whitelist. ⚠️ Uses legacy /rest/api/0/ path — confirm with Acoustic support for your pod.',
+    desc:'Removes a domain from the DLL whitelist. â ï¸ Uses legacy /rest/api/0/ path â confirm with Acoustic support for your pod.',
     endpoint:'/rest/api/0/organizations/{orgId}/whitelist/domains/{domain}',
     sections:[
-      {t:'Domain',i:'🗑️',f:[
-        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID — not the UUID from XML API'},
+      {t:'Domain',i:'ðï¸',f:[
+        {id:'orgId',label:'Organization ID (numeric)',type:'text',req:true,ph:'12345',hint:'Numeric org ID â not the UUID from XML API'},
         {id:'domain',label:'Domain to Remove',type:'text',req:true,ph:'olddomain.com'},
       ]},
     ],
@@ -1515,7 +1515,7 @@ const OPS=[
     desc:'Submit a mobile-originated (MO) message to Acoustic Campaign for processing.',
     endpoint:'/channels/sms/mo',
     sections:[
-      {t:'MO Message',i:'📨',f:[
+      {t:'MO Message',i:'ð¨',f:[
         {id:'msisdn',label:'MSISDN (sender phone)',type:'text',req:true,ph:'+12025551234'},
         {id:'content',label:'Message Content',type:'text',req:true,ph:'STOP'},
         {id:'programId',label:'SMS Program ID',type:'text',req:true,ph:'sms-program-id'},
@@ -1532,11 +1532,11 @@ const OPS=[
 
 ];
 
-// ─── STATE ────────────────────────────────────────────────────────────────────
+// âââ STATE ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 let current=null;
 let vals={};
 
-// ─── SIDEBAR ──────────────────────────────────────────────────────────────────
+// âââ SIDEBAR ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function buildSidebar(){
   const sb=document.getElementById('sb');
   let first=true;
@@ -1557,7 +1557,7 @@ function buildSidebar(){
   });
 }
 
-// ─── SELECT OP ────────────────────────────────────────────────────────────────
+// âââ SELECT OP ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function selectOp(op){
   document.querySelectorAll('.sb-btn').forEach(b=>{b.className='sb-btn';});
   const el=document.getElementById('sb-'+op.id);
@@ -1572,7 +1572,7 @@ function selectOp(op){
   renderContent();
 }
 
-// ─── RENDER CONTENT ───────────────────────────────────────────────────────────
+// âââ RENDER CONTENT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function renderContent(){
   const op=current;
   const c=document.getElementById('content');
@@ -1620,12 +1620,12 @@ function renderContent(){
   updateOutput();
 }
 
-// ─── BUILD FORM ───────────────────────────────────────────────────────────────
+// âââ BUILD FORM âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function buildForm(){
   const pane=document.getElementById('form-pane');
   const op=current;
   if(!op.sections||!op.sections.length){
-    pane.innerHTML='<div style="color:var(--mid);font-size:12px;padding:8px 0;font-family:var(--ui)">No parameters — runs as-is.</div>';
+    pane.innerHTML='<div style="color:var(--mid);font-size:12px;padding:8px 0;font-family:var(--ui)">No parameters â runs as-is.</div>';
     return;
   }
   op.sections.forEach(sec=>{
@@ -1655,9 +1655,9 @@ function renderField(f){
   return'<div class="field"><label>'+f.label+' '+req+'</label>'+input+hint+'</div>';
 }
 
-// ─── REQUEST METADATA ─────────────────────────────────────────────────────────
+// âââ REQUEST METADATA âââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function buildReqMeta(method,url,headers,bodyType,bodyLang){
-  // Method + URL already shown in the endpoint pill at the top — only show Headers + Body here
+  // Method + URL already shown in the endpoint pill at the top â only show Headers + Body here
   let html='';
   if(headers.length){
     html+='<div class="req-meta-section"><div class="req-meta-title">Headers</div>';
@@ -1678,7 +1678,7 @@ function buildReqMeta(method,url,headers,bodyType,bodyLang){
   return html;
 }
 
-// ─── OUTPUT ───────────────────────────────────────────────────────────────────
+// âââ OUTPUT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function updateOutput(){
   if(!current)return;
   const result=current.build(vals);
@@ -1722,7 +1722,7 @@ function buildCurlRest(method,path,body){
   return cmd;
 }
 
-// ─── SYNTAX HIGHLIGHT XML ─────────────────────────────────────────────────────
+// âââ SYNTAX HIGHLIGHT XML âââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function highlightXml(raw){
   return raw.split('\n').map(line=>{
     let h=esc(line);
@@ -1736,7 +1736,7 @@ function highlightXml(raw){
   }).join('');
 }
 
-// ─── SYNTAX HIGHLIGHT REST ────────────────────────────────────────────────────
+// âââ SYNTAX HIGHLIGHT REST ââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function highlightRest(endpointLine,body){
   const lines=[];
   // endpoint line
@@ -1763,7 +1763,7 @@ function highlightRest(endpointLine,body){
   return lines.join('');
 }
 
-// ─── COPY ─────────────────────────────────────────────────────────────────────
+// âââ COPY âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 function copyBody(){
   if(!current)return;
   const result=current.build(vals);
@@ -1797,7 +1797,7 @@ function toast(msg){
   setTimeout(()=>{t.style.display='none';},2500);
 }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
+// âââ INIT âââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
 document.addEventListener('DOMContentLoaded',()=>{
   buildSidebar();
   document.getElementById('pod').addEventListener('change',updateEp);
@@ -1805,5 +1805,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('refresh-token').addEventListener('keydown',e=>{if(e.key==='Enter')fetchToken();});
 });
 </script>
+  <script src="proxy-inject.js"></script>
 </body>
 </html>
