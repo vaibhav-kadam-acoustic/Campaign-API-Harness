@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Deploy Campaign API Proxy Worker</title>
+<style>
+:root{
+  --bg:#ffffff;--bg2:#f9f7f5;--bg3:#f0ede8;
+  --line:#d8d2c8;--muted:#5c5040;--text:#2a1e10;
+  --amber:#e07000;--amberlight:rgba(224,112,0,.09);--amberglow:rgba(224,112,0,.18);
+  --amber2:#b85800;
+  --green:#00b87c;--greenlight:rgba(0,184,124,.1);--greenglow:rgba(0,184,124,.2);
+  --red:#d63030;--header-bg:#1a0800;
+  --mono:'JetBrains Mono',monospace;--ui:'Bricolage Grotesque',-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--ui);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{width:100%;max-width:560px;border:1.5px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(26,8,0,.08)}
+.card-header{background:var(--header-bg);padding:20px 24px;display:flex;align-items:center;gap:12px}
+.hmark{width:32px;height:32px;background:var(--amber);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;letter-spacing:.5px;box-shadow:0 2px 8px var(--amberglow)}
+.hname{color:#fff;font-size:15px;font-weight:600}
+.hsub{color:rgba(255,255,255,.45);font-size:12px;margin-left:auto}
+.card-body{padding:24px;display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase}
+.hint{font-size:11px;color:var(--muted);line-height:1.5}
+.hint a{color:var(--amber);text-decoration:none}
+.hint a:hover{text-decoration:underline}
+input{background:var(--bg);border:1.5px solid var(--line);border-radius:8px;color:var(--text);font-family:var(--mono);font-size:12px;padding:9px 12px;outline:none;width:100%;transition:border-color .15s}
+input:focus{border-color:var(--amber);box-shadow:0 0 0 3px var(--amberlight)}
+.deploy-btn{padding:12px 20px;background:var(--green);border:none;border-radius:10px;color:#0a2a1a;font-family:var(--ui);font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;width:100%;letter-spacing:.3px}
+.deploy-btn:hover{background:#00a06a;box-shadow:0 0 0 3px var(--greenglow)}
+.deploy-btn:disabled{opacity:.5;cursor:not-allowed}
+.result{border-radius:10px;padding:14px 16px;font-size:13px;line-height:1.6;display:none}
+.result.success{background:var(--greenlight);border:1.5px solid var(--green);color:#005a38}
+.result.error{background:rgba(214,48,48,.08);border:1.5px solid var(--red);color:var(--red)}
+.result.info{background:var(--amberlight);border:1.5px solid rgba(224,112,0,.3);color:var(--amber2)}
+.url-box{background:var(--bg3);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px;font-family:var(--mono);font-size:12px;color:var(--amber);word-break:break-all;margin-top:8px;cursor:pointer;transition:background .15s}
+.url-box:hover{background:var(--amberlight)}
+.copy-hint{font-size:11px;color:var(--muted);margin-top:4px}
+.step{display:flex;gap:10px;align-items:flex-start}
+.step-num{width:22px;height:22px;border-radius:50%;background:var(--amberlight);border:1.5px solid rgba(224,112,0,.3);color:var(--amber);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-text{font-size:12px;color:var(--muted);line-height:1.6}
+.divider{border:none;border-top:1px solid var(--line)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{display:inline-block;width:12px;height:12px;border:2px solid rgba(10,42,26,.3);border-top-color:#0a2a1a;border-radius:50%;animation:spin .7s linear infinite;margin-right:8px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <div class="hmark">AC</div>
+    <div class="hname">Deploy Campaign API Proxy</div>
+    <div class="hsub">Cloudflare Worker</div>
+  </div>
+  <div class="card-body">
+
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Go to <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank">dash.cloudflare.com/profile/api-tokens</a> → <strong>Create Token</strong> → use the <strong>"Edit Cloudflare Workers"</strong> template → copy the token.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Find your Account ID: go to <a href="https://dash.cloudflare.com" target="_blank">dash.cloudflare.com</a>, click any domain (or Workers &amp; Pages) — Account ID is on the right sidebar.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Paste both below and click Deploy. The worker URL goes into the <strong>Proxy</strong> field in the Campaign API Harness.</div>
+      </div>
+    </div>
+
+    <hr class="divider"/>
+
+    <div class="field">
+      <label>Cloudflare Account ID</label>
+      <input type="text" id="account-id" placeholder="e.g. f15837c6fe39692318d78569fe3ac681"/>
+    </div>
+
+    <div class="field">
+      <label>API Token</label>
+      <input type="password" id="cf-token" placeholder="Paste your Edit Workers token"/>
+    </div>
+
+    <div class="field">
+      <label>Worker Name</label>
+      <input type="text" id="worker-name" value="campaign-api-proxy" placeholder="campaign-api-proxy"/>
+      <div class="hint">Your worker will be at <span id="worker-url-preview" style="color:var(--amber);font-family:var(--mono);font-size:11px">campaign-api-proxy.&lt;subdomain&gt;.workers.dev</span></div>
+    </div>
+
+    <div id="result" class="result"></div>
+
+    <button class="deploy-btn" id="deploy-btn" onclick="deploy()">Deploy Worker</button>
+
+    <hr class="divider"/>
+    <div class="hint">
+      This page calls the Cloudflare API directly from your browser. Your credentials are never sent anywhere except <code style="font-family:var(--mono)">api.cloudflare.com</code>.
+    </div>
+  </div>
+</div>
+
+<script>
+const WORKER_SCRIPT = `
+const ALLOWED_ORIGINS = [
+  'https://vaibhav-kadam-acoustic.github.io',
+  'https://campaign-api-harness.acoustic.com',
+  'http://localhost',
+  'http://127.0.0.1',
+];
+
+function corsHeaders(origin) {
+  const allowed = ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0];
+  return {
+    'Access-Control-Allow-Origin': allowed,
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
+}
+
+function jsonError(msg, status, origin) {
+  return new Response(JSON.stringify({ error: msg }), {
+    status,
+    headers: { 'Content-Type': 'application/json', ...corsHeaders(origin) },
+  });
+}
+
+export default {
+  async fetch(request) {
+    const origin = request.headers.get('Origin') || '';
+    if (request.method === 'OPTIONS') {
+      return new Response(null, { status: 204, headers: corsHeaders(origin) });
+    }
+    if (request.method !== 'POST') {
+      return new Response('Method not allowed', { status: 405 });
+    }
+    let payload;
+    try { payload = await request.json(); } catch {
+      return jsonError('Invalid JSON body', 400, origin);
+    }
+    const { endpoint, method = 'POST', token, contentType = 'application/json', body } = payload;
+    if (!endpoint) return jsonError('Missing endpoint', 400, origin);
+    const headers = { 'Content-Type': contentType };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    const upstreamInit = { method, headers };
+    if (body && method !== 'GET' && method !== 'HEAD') upstreamInit.body = body;
+    let upstream;
+    try { upstream = await fetch(endpoint, upstreamInit); } catch (err) {
+      return jsonError('Upstream fetch failed: ' + err.message, 502, origin);
+    }
+    const responseText = await upstream.text();
+    const upstreamCT = upstream.headers.get('Content-Type') || 'text/plain';
+    return new Response(responseText, {
+      status: upstream.status,
+      headers: { 'Content-Type': upstreamCT, ...corsHeaders(origin) },
+    });
+  },
+};
+`.trim();
+
+function showResult(type, html) {
+  const el = document.getElementById('result');
+  el.className = 'result ' + type;
+  el.innerHTML = html;
+  el.style.display = 'block';
+}
+
+async function deploy() {
+  const accountId  = document.getElementById('account-id').value.trim();
+  const token      = document.getElementById('cf-token').value.trim();
+  const workerName = document.getElementById('worker-name').value.trim() || 'campaign-api-proxy';
+
+  if (!accountId) { showResult('error', '⚠ Enter your Cloudflare Account ID.'); return; }
+  if (!token)     { showResult('error', '⚠ Enter your API token.'); return; }
+
+  const btn = document.getElementById('deploy-btn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Deploying…';
+  showResult('info', 'Contacting Cloudflare API…');
+
+  try {
+    const formData = new FormData();
+    const metadata = JSON.stringify({
+      main_module: 'worker.js',
+      compatibility_date: '2024-01-01',
+    });
+    formData.append('metadata', new Blob([metadata], { type: 'application/json' }), 'metadata.json');
+    formData.append('worker.js', new Blob([WORKER_SCRIPT], { type: 'application/javascript+module' }), 'worker.js');
+
+    const res = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}`,
+      {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${token}` },
+        body: formData,
+      }
+    );
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      const msg = json.errors?.map(e => e.message).join('; ') || `HTTP ${res.status}`;
+      showResult('error', `⚠ Deploy failed: ${msg}`);
+      return;
+    }
+
+    const subRes = await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/subdomain`,
+      { headers: { 'Authorization': `Bearer ${token}` } }
+    );
+    const subJson = await subRes.json();
+    const subdomain = subJson.result?.subdomain || '<your-subdomain>';
+    const workerUrl = `https://${workerName}.${subdomain}.workers.dev`;
+
+    await fetch(
+      `https://api.cloudflare.com/client/v4/accounts/${accountId}/workers/scripts/${workerName}/subdomain`,
+      {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ enabled: true }),
+      }
+    );
+
+    showResult('success', `
+      ✓ Worker deployed successfully!<br/><br/>
+      Paste this URL into the <strong>Proxy</strong> field in the Campaign API Harness:<br/>
+      <div class="url-box" onclick="copyUrl('${workerUrl}')">${workerUrl}</div>
+      <div class="copy-hint">Click to copy · The worker also handles OAuth token fetching through the proxy</div>
+    `);
+  } catch (err) {
+    showResult('error', `⚠  ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Deploy Worker';
+  }
+}
+
+function copyUrl(url) {
+  navigator.clipboard.writeText(url).catch(() => {});
+  event.target.textContent = '✓ Copied!';
+  setTimeout(() => event.target.textContent = url, 2000);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('worker-name').addEventListener('input', e => {
+    const name = e.target.value || 'campaign-api-proxy';
+    document.getElementById('worker-url-preview').textContent = `${name}.<subdomain>.workers.dev`;
+  });
+});
+</script>
+</body>
+</html>
